@@ -1,39 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Combat;
 
-namespace RPG
+namespace RPG.Movement
 {
     public class Mover : MonoBehaviour
     {
         NavMeshAgent _navMeshAgent;
-        Camera _camera;
         Animator _animator;
+        Fighter _fighter;
 
         void Awake()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            _camera = Camera.main;
             _animator = GetComponent<Animator>();
+            _fighter = GetComponent<Fighter>();
         }
 
         void Update()
         {
-            if (Input.GetMouseButton(0))
-                MoveToMousePosition();
-
             UpdateAnimator();
         }
 
-        void MoveToMousePosition()
+        public void StartMoveAction(Vector3 destination)
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            bool hasHit = Physics.Raycast(ray, out hit);
+            _fighter.CancelAttack();
+            MoveTo(destination);
+        }
 
-            if (hasHit)
-                _navMeshAgent.SetDestination(hit.point);
+        public void MoveTo(Vector3 destination)
+        {
+            _navMeshAgent.isStopped = false;
+            _navMeshAgent.SetDestination(destination);
+        }
+
+        public void Stop()
+        {
+            _navMeshAgent.isStopped = true;
         }
 
         void UpdateAnimator()
