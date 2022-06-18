@@ -48,8 +48,10 @@ namespace RPG.Control
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
                 if (target == null) continue;
 
+                if (!_fighter.CanAttack(target.gameObject)) continue;
+
                 if (Input.GetMouseButtonDown(0))
-                    _fighter.Attack(target);
+                    _fighter.Attack(target.gameObject);
 
                 return true;
             }
