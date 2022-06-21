@@ -1,5 +1,6 @@
 using RPG.Movement;
 using RPG.Combat;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Control
@@ -8,17 +9,21 @@ namespace RPG.Control
     {
         Mover _mover;
         Fighter _fighter;
+        Health _health;
         Camera _camera;
 
         void Awake()
         {
             _mover = GetComponent<Mover>();
             _fighter = GetComponent<Fighter>();
+            _health = GetComponent<Health>();
             _camera = Camera.main;
         }
 
         void Update()
         {
+            if (_health.IsDead) return;
+
             if (PerformCombat()) return;
             if (PerformMovement()) return;
         }

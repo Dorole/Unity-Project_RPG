@@ -15,7 +15,7 @@ namespace RPG.Combat
         ActionScheduler _scheduler;
         Animator _animator;
 
-        float _timeSinceLastAttack;
+        float _timeSinceLastAttack = Mathf.Infinity;
 
         private void Awake()
         {
