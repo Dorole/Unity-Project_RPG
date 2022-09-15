@@ -30,7 +30,7 @@ namespace RPG.Combat
 
             if (_target == null || _target.IsDead) return;
 
-            _mover.MoveTo(_target.transform.position);
+            _mover.MoveTo(_target.transform.position, 1f);
 
             if (IsInRange())
             {
@@ -86,6 +86,7 @@ namespace RPG.Combat
         {
             StopAttack();
             _target = null;
+            _mover.Cancel();
         }
 
         //animation event

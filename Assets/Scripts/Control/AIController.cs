@@ -13,6 +13,8 @@ namespace RPG.Control
         [SerializeField] PatrolPath _patrolPath;
         [SerializeField] float _waypointTolerance = 1f;
         [SerializeField] float _waypointDwellTime = 2f;
+        [Range(0,1)]
+        [SerializeField] float _patrolSpeedFraction = 0.2f; //fraction of maxSpeed from Mover (20%)
 
         GameObject _player;
         Fighter _fighter;
@@ -25,7 +27,7 @@ namespace RPG.Control
         float _timeSinceArrivedAtWaypoint = Mathf.Infinity;
         int _currentWaypointIndex;
 
-        private void Awake()
+        void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
             _fighter = GetComponent<Fighter>();
@@ -52,7 +54,7 @@ namespace RPG.Control
             UpdateTimers();
         }
 
-        private void UpdateTimers()
+        void UpdateTimers()
         {
             _timeSinceLastSawPlayer += Time.deltaTime;
             _timeSinceArrivedAtWaypoint += Time.deltaTime;
@@ -80,7 +82,7 @@ namespace RPG.Control
             }
 
             if (_timeSinceArrivedAtWaypoint > _waypointDwellTime)
-                _mover.StartMoveAction(nextPosition);
+                _mover.StartMoveAction(nextPosition, _patrolSpeedFraction);
         }
 
         Vector3 GetCurrentWaypoint()
