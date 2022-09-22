@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1161614376}
-  m_PathPosition: 0.2957291
+  m_PathPosition: 1
   m_PositionUnits: 2
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -2037,10 +2037,6 @@ PrefabInstance:
     - target: {fileID: 5304250440642299468, guid: 490ad0b0e7571d647805fdf6b365652f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6271981667427878729, guid: 490ad0b0e7571d647805fdf6b365652f, type: 3}
-      propertyPath: uniqueIdentifier
-      value: 9c7b8399-03e0-48fd-b499-5ab4407bd946
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 490ad0b0e7571d647805fdf6b365652f, type: 3}
@@ -4054,7 +4050,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072380184}
-  m_LocalRotation: {x: 0.1607211, y: 0.20194371, z: -0.03361517, w: 0.9655348}
+  m_LocalRotation: {x: 0.022676742, y: 0.9757251, z: -0.12315219, w: 0.17966603}
   m_LocalPosition: {x: -21.53906, y: 11.842848, z: 31.308949}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

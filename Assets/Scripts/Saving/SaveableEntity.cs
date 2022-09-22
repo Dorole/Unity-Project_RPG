@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace RPG.Saving
     public class SaveableEntity : MonoBehaviour
     {
         [SerializeField] string uniqueIdentifier = "";
+        Dictionary<string, SaveableEntity> _globalLookup = new Dictionary<string, SaveableEntity>();
 
         public string GetUniqueIdentifier()
         {
@@ -38,7 +40,7 @@ namespace RPG.Saving
         }
 
 #if UNITY_EDITOR
-        private void Update()
+        void Update()
         {
             if (Application.isPlaying) return;
             if (string.IsNullOrEmpty(gameObject.scene.path)) return;
@@ -46,12 +48,37 @@ namespace RPG.Saving
             SerializedObject serializedObject = new SerializedObject(this);
             SerializedProperty property = serializedObject.FindProperty("uniqueIdentifier");
 
-            if(string.IsNullOrEmpty(property.stringValue))
+            if(string.IsNullOrEmpty(property.stringValue) || !IsUnique(property.stringValue))
             {
                 property.stringValue = System.Guid.NewGuid().ToString();
                 serializedObject.ApplyModifiedProperties();
             }
+
+            _globalLookup[property.stringValue] = this;
         }
 #endif
+
+        bool IsUnique(string candidate)
+        {
+            if (!_globalLookup.ContainsKey(candidate)) 
+                return true;
+
+            if (_globalLookup[candidate] == this)
+                return true;
+
+            if (_globalLookup[candidate] == null)
+            {
+                _globalLookup.Remove(candidate);
+                return true;
+            }
+
+            if (_globalLookup[candidate].GetUniqueIdentifier() != candidate)
+            {
+                _globalLookup.Remove(candidate);
+                return true;
+            }
+
+            return false;
+        }
     }
 }

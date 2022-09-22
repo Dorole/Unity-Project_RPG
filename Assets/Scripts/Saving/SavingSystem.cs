@@ -1,12 +1,17 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RPG.Saving
 {
     public class SavingSystem : MonoBehaviour
     {
+        const string LAST_SCENE = "lastScene";
+        const string EXTENSION = ".sav";
+
         public void Save(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
@@ -17,6 +22,20 @@ namespace RPG.Saving
         public void Load(string saveFile)
         {
             RestoreState(LoadFile(saveFile));
+        }
+
+        public IEnumerator LoadLastScene(string saveFile)
+        {
+            Dictionary<string, object> state = LoadFile(saveFile);
+
+            if (state.ContainsKey(LAST_SCENE))
+            {
+                int buildIndex = (int)state[LAST_SCENE];
+                if (buildIndex != SceneManager.GetActiveScene().buildIndex)
+                    yield return SceneManager.LoadSceneAsync(buildIndex);
+            }
+
+            RestoreState(state);
         }
 
         private void SaveFile(string saveFile, object state)
@@ -54,6 +73,7 @@ namespace RPG.Saving
                state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
             }
 
+            state[LAST_SCENE] = SceneManager.GetActiveScene().buildIndex;
         }
 
         private void RestoreState(Dictionary<string, object> state)
@@ -69,7 +89,7 @@ namespace RPG.Saving
 
         private string GetPathFromSaveFile(string saveFile)
         {
-            return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
+            return Path.Combine(Application.persistentDataPath, saveFile + EXTENSION);
         }
 
     }
