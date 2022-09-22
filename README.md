@@ -1,5 +1,7 @@
 # Unity-Project_RPG
 
+_WIP_
+
 What this project taught me so far:
 * How to use namespaces properly
 * How to decouple code and invert dependencies
