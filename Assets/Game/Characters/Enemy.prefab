@@ -57,6 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+--- !u!4 &1730837094319089841 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 423694, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+  m_PrefabInstance: {fileID: 1730837094318940095}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6671275888861558730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -125,9 +130,17 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7734906158273115520, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 646804596f49acb4595211c5f3bc285e, type: 2}
+    - target: {fileID: 7734906158273115520, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
       propertyPath: _weaponRange
       value: 1.3
       objectReference: {fileID: 0}
+    - target: {fileID: 7734906158273115520, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
+      propertyPath: _handTransform
+      value: 
+      objectReference: {fileID: 1730837094319089841}
     - target: {fileID: 7952877616126437929, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
       propertyPath: m_Speed
       value: 3
@@ -175,6 +188,7 @@ MonoBehaviour:
   _patrolPath: {fileID: 0}
   _waypointTolerance: 1
   _waypointDwellTime: 2
+  _patrolSpeedFraction: 0.2
 --- !u!114 &3844348205595994085
 MonoBehaviour:
   m_ObjectHideFlags: 0
