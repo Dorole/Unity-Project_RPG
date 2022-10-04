@@ -1,3 +1,4 @@
+using RPG.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,14 +14,37 @@ namespace RPG.Combat
         public float Damage => _damage;
         [SerializeField] float _weaponRange = 2;
         public float WeaponRange => _weaponRange;
+        [SerializeField] bool _isRightHanded = true;
+        [SerializeField] Projectile _projectile = null;
+        GameObject _spawnedInstance;
 
-        public void Spawn(Transform handTransform, Animator animator)
+        public GameObject Spawn(Transform rightHand, Transform leftHand, Animator animator)
         {
             if (_equippedPrefab != null)
-                Instantiate(_equippedPrefab, handTransform);
+            {
+                Transform handTransform = GetHandTransform(rightHand, leftHand);
+                _spawnedInstance = Instantiate(_equippedPrefab, handTransform);
+            }
 
             if (_animatorOverride != null)
                 animator.runtimeAnimatorController = _animatorOverride;
+
+            return _spawnedInstance;
+        }
+
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
+        {
+            Projectile projectile = Instantiate(_projectile, GetHandTransform(rightHand, leftHand).position, Quaternion.identity);
+            projectile.SetTarget(target, _damage);
+        }
+
+        public bool HasProjectile()
+        {
+            return _projectile != null;
+        }
+        private Transform GetHandTransform(Transform rightHand, Transform leftHand)
+        {
+            return _isRightHanded ? rightHand : leftHand;
         }
     }
 }

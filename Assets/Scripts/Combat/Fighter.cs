@@ -8,8 +8,11 @@ namespace RPG.Combat
     {
         
         [SerializeField] float _timeBetweenAttacks = 0.5f;
-        [SerializeField] Transform _handTransform = null;
-        [SerializeField] Weapon_SO _weapon = null;
+        [SerializeField] Transform _rightHand = null;
+        [SerializeField] Transform _leftHand = null;
+        [SerializeField] Weapon_SO _defaultWeapon = null;
+        Weapon_SO _currentWeapon = null;
+        GameObject _equippedWeapon;
         
         Health _target;
         Mover _mover;
@@ -27,14 +30,15 @@ namespace RPG.Combat
 
         private void Start()
         {
-            SpawnWeapon();
+            EquipWeapon(_defaultWeapon);
         }
 
         private void Update()
         {
             _timeSinceLastAttack += Time.deltaTime;
 
-            if (_target == null || _target.IsDead) return;
+            if (_target == null || _target.IsDead) 
+                return;
 
             _mover.MoveTo(_target.transform.position, 1f);
 
@@ -45,10 +49,18 @@ namespace RPG.Combat
             }
         }
 
-        void SpawnWeapon()
+        public void EquipWeapon(Weapon_SO weapon)
         {
-            if (_weapon == null) return;
-            _weapon.Spawn(_handTransform, _animator);
+            if (_equippedWeapon)
+                UnequipWeapon();
+
+            _currentWeapon = weapon;
+            _equippedWeapon = _currentWeapon.Spawn(_rightHand, _leftHand, _animator);
+        }
+
+        void UnequipWeapon()
+        {
+            Destroy(_equippedWeapon.gameObject);
         }
 
         void AttackBehaviour()
@@ -70,7 +82,7 @@ namespace RPG.Combat
 
         bool IsInRange()
         {
-            return Vector3.Distance(transform.position, _target.transform.position) < _weapon.WeaponRange;
+            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.WeaponRange;
         }
 
         public bool CanAttack(GameObject target)
@@ -101,11 +113,21 @@ namespace RPG.Combat
             _mover.Cancel();
         }
 
-        //animation event
+        //animation events
+        //names defined by asset packs so it is what it is
         void Hit()
         {
             if (_target == null) return;
-            _target.TakeDamage(_weapon.Damage);
+
+            if (_currentWeapon.HasProjectile())
+                _currentWeapon.LaunchProjectile(_rightHand, _leftHand, _target);
+            else
+                _target.TakeDamage(_currentWeapon.Damage);
+        }
+
+        void Shoot() 
+        {
+            Hit();
         }
     }
 }
