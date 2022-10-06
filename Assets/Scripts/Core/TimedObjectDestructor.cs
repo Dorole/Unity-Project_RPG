@@ -17,7 +17,7 @@ namespace RPG.Core
 			if (detachChildren)
 				transform.DetachChildren();
 
-			gameObject.SetActive(false);
+			Destroy(gameObject);
 		}
 	}
 }

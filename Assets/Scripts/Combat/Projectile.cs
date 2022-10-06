@@ -10,6 +10,8 @@ namespace RPG.Combat
         [SerializeField] bool _isHoming = false;
         [SerializeField] float _speed = 1f;
         [SerializeField] GameObject _hitEffect = null;
+        [SerializeField] GameObject[] _destroyOnHit = null;
+        [SerializeField] float _lifeAfterImpact = 0.2f;
         Health _target = null;
         float _damage = 0;
 
@@ -58,11 +60,15 @@ namespace RPG.Combat
             if (target != null && !target.IsDead)
             {
                 target.TakeDamage(_damage);
+                _speed = 0f;
 
                 if (_hitEffect != null)
                     Instantiate(_hitEffect, GetAimLocation(), transform.rotation);
 
-                gameObject.SetActive(false);
+                foreach (var toDestroy in _destroyOnHit)
+                    Destroy(toDestroy);
+
+                Destroy(gameObject, _lifeAfterImpact);
             }
         }
     }

@@ -26,8 +26,12 @@ namespace RPG.Combat
                 _spawnedInstance = Instantiate(_equippedPrefab, handTransform);
             }
 
+            var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+
             if (_animatorOverride != null)
                 animator.runtimeAnimatorController = _animatorOverride;
+            else if (overrideController != null)
+                animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
 
             return _spawnedInstance;
         }

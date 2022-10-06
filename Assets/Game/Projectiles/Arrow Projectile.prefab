@@ -210,6 +210,9 @@ MonoBehaviour:
   _isHoming: 0
   _speed: 20
   _hitEffect: {fileID: 4105220741991244407, guid: a02f264610a91424e9e0d44407978628, type: 3}
+  _destroyOnHit:
+  - {fileID: 4395556880268674217}
+  _lifeAfterImpact: 0.2
 --- !u!114 &-7432670849255793390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +284,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f49c6920d49ba468b083941d79f2c0, type: 3}
+--- !u!1 &4395556880268674217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1659504181823486, guid: c7f49c6920d49ba468b083941d79f2c0, type: 3}
+  m_PrefabInstance: {fileID: 4397135010783724375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4401461900684598243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4750687242688692, guid: c7f49c6920d49ba468b083941d79f2c0, type: 3}

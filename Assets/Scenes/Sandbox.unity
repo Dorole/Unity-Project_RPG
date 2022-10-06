@@ -501,6 +501,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5691302896244581729, guid: 30c83165facfcac4e9c14ca69368343d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5709917549959151880, guid: 30c83165facfcac4e9c14ca69368343d, type: 3}
       propertyPath: m_Name
       value: Archer (1)
@@ -2198,6 +2202,10 @@ PrefabInstance:
       propertyPath: _defaultWeapon
       value: 
       objectReference: {fileID: 11400000, guid: f7b52ff4acbb3fe4cb84c87c0763f8c9, type: 2}
+    - target: {fileID: 3744740172577660191, guid: 490ad0b0e7571d647805fdf6b365652f, type: 3}
+      propertyPath: _defaultWeaponName
+      value: Unarmed
+      objectReference: {fileID: 0}
     - target: {fileID: 4358992856297904273, guid: 490ad0b0e7571d647805fdf6b365652f, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -4925,6 +4925,9 @@ MonoBehaviour:
   _isHoming: 0
   _speed: 10
   _hitEffect: {fileID: 2302457091093092515, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
+  _destroyOnHit:
+  - {fileID: 1949198335123274787}
+  _lifeAfterImpact: 0.2
 --- !u!114 &-7432670849255793390
 MonoBehaviour:
   m_ObjectHideFlags: 0
