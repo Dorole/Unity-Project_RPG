@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: _chaseDistance
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1470939193819057757, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
+      propertyPath: _characterClass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1730837094305201379, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

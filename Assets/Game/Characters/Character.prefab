@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7734906158273115520}
   - component: {fileID: 6218835955751171242}
   - component: {fileID: 1128885541559136214}
+  - component: {fileID: -3964028089462130281}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -175,8 +176,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeBetweenAttacks: 1
-  _handTransform: {fileID: 0}
+  _rightHand: {fileID: 0}
+  _leftHand: {fileID: 0}
   _defaultWeapon: {fileID: 0}
+  _defaultWeaponName: Unarmed
 --- !u!114 &6218835955751171242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +206,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: 
+--- !u!114 &-3964028089462130281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241989505301901011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b37b2e0853924a49a76fbf6afe1f9cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 1
+  _characterClass: 0
+  _progression: {fileID: 11400000, guid: b8e7b876f4356ef4fbb69fe149b04b7e, type: 2}

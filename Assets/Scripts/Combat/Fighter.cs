@@ -2,6 +2,7 @@ using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
 using RPG.Saving;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {
@@ -115,6 +116,11 @@ namespace RPG.Combat
             StopAttack();
             _target = null;
             _mover.Cancel();
+        }
+
+        public Health GetTarget()
+        {
+            return _target;
         }
 
         //animation events
