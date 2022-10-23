@@ -11,29 +11,35 @@ namespace RPG.Attributes
         float _startingHealthPoints;
 
         Animator _anim;
+        GameObject _player;
         bool _isDead;
         public bool IsDead => _isDead;
 
+
         private void Awake()
         {
+            _startingHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            _healthPoints = _startingHealthPoints;
+            
             _anim = GetComponent<Animator>();
+
+            if (!gameObject.CompareTag("Player"))
+                _player = GameObject.FindGameObjectWithTag("Player");
         }
 
         private void Start()
         {
-            _startingHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
-            _healthPoints = _startingHealthPoints;
         }
 
         public void TakeDamage(float damage)
         {
             _healthPoints = Mathf.Max(_healthPoints - damage, 0);
-            print(_healthPoints);
+            //print(_healthPoints);
 
             if (_healthPoints <= 0)
             {
-                Die();
                 AwardExperience();
+                Die();
             }
         }
 
@@ -68,8 +74,10 @@ namespace RPG.Attributes
 
         void AwardExperience()
         {
-            Experience experience = GameObject.FindGameObjectWithTag("Player").GetComponent<Experience>();
-            if (experience == null) return;
+            if (gameObject.CompareTag("Player")) return;
+
+            Experience experience = _player.GetComponent<Experience>();
+            //if (experience == null) return;
             
             experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
         }

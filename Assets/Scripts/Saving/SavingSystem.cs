@@ -24,6 +24,13 @@ namespace RPG.Saving
             RestoreState(LoadFile(saveFile));
         }
 
+#if UNITY_EDITOR
+        public void Delete(string saveFile)
+        {
+            File.Delete(GetPathFromSaveFile(saveFile));
+        }
+#endif
+
         public IEnumerator LoadLastScene(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
