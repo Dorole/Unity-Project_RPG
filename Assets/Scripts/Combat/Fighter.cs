@@ -3,10 +3,13 @@ using RPG.Movement;
 using RPG.Core;
 using RPG.Saving;
 using RPG.Attributes;
+using RPG.Stats;
+using System.Collections.Generic;
+using RPG.Utils;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
         
         [SerializeField] float _timeBetweenAttacks = 0.5f;
@@ -15,30 +18,39 @@ namespace RPG.Combat
         [SerializeField] Weapon_SO _defaultWeapon = null;
         [SerializeField] string _defaultWeaponName = "Unarmed";
 
-        Weapon_SO _currentWeapon = null;
+        LazyValue<Weapon_SO> _currentWeapon;
         GameObject _equippedWeapon;
         
         Health _target;
         Mover _mover;
         ActionScheduler _scheduler;
         Animator _animator;
+        BaseStats _baseStats;
 
         float _timeSinceLastAttack = Mathf.Infinity;
 
-        private void Awake()
+        void Awake()
         {
             _mover = GetComponent<Mover>();
             _scheduler = GetComponent<ActionScheduler>();
             _animator = GetComponent<Animator>();
+            _baseStats = GetComponent<BaseStats>();
+
+            _currentWeapon = new LazyValue<Weapon_SO>(SetUpDefaultWeapon);
         }
 
-        private void Start()
+        Weapon_SO SetUpDefaultWeapon()
         {
-            if (_currentWeapon == null)
-                EquipWeapon(_defaultWeapon);
+            AttachWeapon(_defaultWeapon);
+            return _defaultWeapon;
         }
 
-        private void Update()
+        void Start()
+        {
+            _currentWeapon.ForceInitialization();
+        }
+
+        void Update()
         {
             _timeSinceLastAttack += Time.deltaTime;
 
@@ -59,8 +71,13 @@ namespace RPG.Combat
             if (_equippedWeapon)
                 UnequipWeapon();
 
-            _currentWeapon = weapon;
-            _equippedWeapon = _currentWeapon.Spawn(_rightHand, _leftHand, _animator);
+            _currentWeapon.value = weapon;
+            AttachWeapon(weapon);
+        }
+
+        void AttachWeapon(Weapon_SO weapon)
+        {
+           weapon.Spawn(_rightHand, _leftHand, _animator);
         }
 
         void UnequipWeapon()
@@ -87,7 +104,7 @@ namespace RPG.Combat
 
         bool IsInRange()
         {
-            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.WeaponRange;
+            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.value.WeaponRange;
         }
 
         public bool CanAttack(GameObject target)
@@ -123,26 +140,21 @@ namespace RPG.Combat
             return _target;
         }
 
-        //animation events
-        //names defined by asset packs so it is what it is
-        void Hit()
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
         {
-            if (_target == null) return;
-
-            if (_currentWeapon.HasProjectile())
-                _currentWeapon.LaunchProjectile(_rightHand, _leftHand, _target);
-            else
-                _target.TakeDamage(_currentWeapon.Damage);
+            if (stat == Stat.Damage)
+                yield return _currentWeapon.value.Damage;
         }
 
-        void Shoot() 
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
         {
-            Hit();
+            if (stat == Stat.Damage)
+                yield return _currentWeapon.value.PercentageBonus;
         }
 
         public object CaptureState()
         {
-            return _currentWeapon.name;
+            return _currentWeapon.value.name;
         }
 
         public void RestoreState(object state)
@@ -150,6 +162,25 @@ namespace RPG.Combat
             string savedWeapon = (string)state;
             Weapon_SO weapon = Resources.Load<Weapon_SO>(savedWeapon);
             EquipWeapon(weapon);
+        }
+
+        //animation events
+        void Hit()
+        {
+            if (_target == null) return;
+
+            float damage = _baseStats.GetStat(Stat.Damage);
+            if (_currentWeapon.value.HasProjectile())
+                _currentWeapon.value.LaunchProjectile(_rightHand, _leftHand, _target, damage);
+            else
+            {
+                _target.TakeDamage(damage);
+            }
+        }
+
+        void Shoot() 
+        {
+            Hit();
         }
     }
 }

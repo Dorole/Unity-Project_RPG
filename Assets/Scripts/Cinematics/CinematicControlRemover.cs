@@ -16,10 +16,16 @@ namespace RPG.Cinematics
             _pd = GetComponent<PlayableDirector>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
             _pd.played += DisableControl;
             _pd.stopped += EnableControl;
+        }
+
+        private void OnDisable()
+        {
+            _pd.played -= DisableControl;
+            _pd.stopped -= EnableControl;
         }
 
         void DisableControl(PlayableDirector pd)

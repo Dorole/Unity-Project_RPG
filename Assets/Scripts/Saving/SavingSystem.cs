@@ -28,20 +28,21 @@ namespace RPG.Saving
         public void Delete(string saveFile)
         {
             File.Delete(GetPathFromSaveFile(saveFile));
+            print("Save file deleted.");
         }
 #endif
 
         public IEnumerator LoadLastScene(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
+            int buildIndex = SceneManager.GetActiveScene().buildIndex;
 
             if (state.ContainsKey(LAST_SCENE))
             {
-                int buildIndex = (int)state[LAST_SCENE];
-                if (buildIndex != SceneManager.GetActiveScene().buildIndex)
-                    yield return SceneManager.LoadSceneAsync(buildIndex);
+                buildIndex = (int)state[LAST_SCENE];
             }
 
+            yield return SceneManager.LoadSceneAsync(buildIndex);
             RestoreState(state);
         }
 

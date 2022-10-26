@@ -2,48 +2,62 @@ using UnityEngine;
 using RPG.Saving;
 using RPG.Stats;
 using RPG.Core;
+using RPG.Utils;
+using System;
 
 namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveable
     {
-        [SerializeField] float _healthPoints = 20f;
-        float _startingHealthPoints;
+        [SerializeField] float _regenerationPercentage = 100;
+        LazyValue<float> _healthPoints;
+        public float HealthPoints => _healthPoints.value;
 
+        BaseStats _baseStats;
         Animator _anim;
-        GameObject _player;
         bool _isDead;
         public bool IsDead => _isDead;
 
 
-        private void Awake()
+        void Awake()
         {
-            _startingHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
-            _healthPoints = _startingHealthPoints;
-            
+            _baseStats = GetComponent<BaseStats>();
             _anim = GetComponent<Animator>();
+            _healthPoints = new LazyValue<float>(GetInitialHealth);
+        }
 
-            if (!gameObject.CompareTag("Player"))
-                _player = GameObject.FindGameObjectWithTag("Player");
+        float GetInitialHealth()
+        {
+            return _baseStats.GetStat(Stat.Health);
+        }
+
+        void OnEnable()
+        {
+            if (gameObject.CompareTag("Player"))
+                _baseStats.OnLevelUp += RegenerateHealth;
         }
 
         private void Start()
         {
+            //if at this point nothing called on healthPoints and initialized it,
+            //do it now
+            _healthPoints.ForceInitialization();
         }
 
         public void TakeDamage(float damage)
         {
-            _healthPoints = Mathf.Max(_healthPoints - damage, 0);
-            //print(_healthPoints);
+            print(gameObject.name + " took damage: " + damage);
 
-            if (_healthPoints <= 0)
+            _healthPoints.value = Mathf.Max(_healthPoints.value - damage, 0);
+
+            if (_healthPoints.value <= 0)
             {
                 AwardExperience();
                 Die();
             }
         }
 
-        private void Die()
+        void Die()
         {
             if (_isDead) return;
 
@@ -54,32 +68,51 @@ namespace RPG.Attributes
 
         public object CaptureState()
         {
-            return _healthPoints;
+            return _healthPoints.value;
         }
 
         public void RestoreState(object state)
         {
-            _healthPoints = (float)state;
+            _healthPoints.value = (float)state;
 
-            if (_healthPoints <= 0)
+            if (_healthPoints.value <= 0)
             {
                 Die();
             }
         }
 
+        /// <summary>
+        /// Use this to display health in the percentage format.
+        /// </summary>
         public float GetPercentage()
         {
-            return 100 * (_healthPoints / _startingHealthPoints);
+            return 100 * (_healthPoints.value / _baseStats.GetStat(Stat.Health));
+        }
+
+        public float GetMaxHealthPoints()
+        {
+            return _baseStats.GetStat(Stat.Health);
         }
 
         void AwardExperience()
         {
             if (gameObject.CompareTag("Player")) return;
 
-            Experience experience = _player.GetComponent<Experience>();
-            //if (experience == null) return;
-            
-            experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
+            Experience playerExperience = GameObject.FindWithTag("Player").GetComponent<Experience>();
+            playerExperience.GainExperience(_baseStats.GetStat(Stat.ExperienceReward));
+        }
+
+        void RegenerateHealth()
+        {
+            float regenHealthPoints = _baseStats.GetStat(Stat.Health) * (_regenerationPercentage / 100);
+            _healthPoints.value = Mathf.Max(_healthPoints.value, regenHealthPoints);
+            //_healthPoints.value = _baseStats.GetStat(Stat.Health);
+        }
+
+        void OnDisable()
+        {
+            if (gameObject.CompareTag("Player"))
+                _baseStats.OnLevelUp -= RegenerateHealth;
         }
     }
 }

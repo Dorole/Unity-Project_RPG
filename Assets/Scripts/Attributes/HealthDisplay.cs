@@ -18,7 +18,7 @@ namespace RPG.Attributes
         private void Update()
         {
             //:0 - 0 decimal places, :0.0 - 1 dec place
-            _healthText.text = String.Format("{0:0}%", _health.GetPercentage()); 
+            _healthText.text = String.Format("{0:0}/{1:0}", _health.HealthPoints, _health.GetMaxHealthPoints()); 
         }
     }
 }
