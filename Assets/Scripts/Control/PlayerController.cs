@@ -7,6 +7,10 @@ namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] CursorType_SO _noneCursor;
+        [SerializeField] CursorType_SO _combatCursor;
+        [SerializeField] CursorType_SO _movementCursor;
+
         Mover _mover;
         Fighter _fighter;
         Health _health;
@@ -26,6 +30,8 @@ namespace RPG.Control
 
             if (PerformCombat()) return;
             if (PerformMovement()) return;
+
+            _noneCursor.SetCursor();
         }
 
         bool PerformMovement()
@@ -38,12 +44,15 @@ namespace RPG.Control
                 if (Input.GetMouseButton(0))
                     _mover.StartMoveAction(hit.point, 1f);
 
+                _movementCursor.SetCursor();
                 return true;
             }
 
             return false;
         }
 
+        
+        
         bool PerformCombat()
         {
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
@@ -58,6 +67,7 @@ namespace RPG.Control
                 if (Input.GetMouseButtonDown(0))
                     _fighter.Attack(target.gameObject);
 
+                _combatCursor.SetCursor();
                 return true;
             }
 

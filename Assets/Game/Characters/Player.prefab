@@ -174,6 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6dfaebdfb549d645805593b084dc8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _noneCursor: {fileID: 11400000, guid: 3a1e28c1a685c35468024bd6b0a14a94, type: 2}
+  _combatCursor: {fileID: 11400000, guid: 8a79544f178307946919f1c6cec169e9, type: 2}
+  _movementCursor: {fileID: 11400000, guid: 264e2e33e5684f74796a9d818fed8852, type: 2}
 --- !u!1001 &8034277383821801400
 PrefabInstance:
   m_ObjectHideFlags: 0
