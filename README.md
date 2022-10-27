@@ -10,6 +10,8 @@ What this project taught me so far:
 * How to use animation blend trees
 * How to "portal" between scenes using connected portals
 * How to implement cutscenes
+* How to implement a progression system for levelling up
+* How to understand and work with YAML files
 ***
 What I already knew and used in this project:
 * How to implement character movement 
@@ -17,3 +19,5 @@ What I already knew and used in this project:
 * How to use Cinemachine
 * How to handle damage and death
 * How to transition between scenes
+* How to work with interfaces
+* How to work with scriptable objects
