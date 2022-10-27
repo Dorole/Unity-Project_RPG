@@ -2,6 +2,8 @@ using RPG.Movement;
 using RPG.Combat;
 using RPG.Attributes;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System;
 
 namespace RPG.Control
 {
@@ -10,6 +12,7 @@ namespace RPG.Control
         [SerializeField] CursorType_SO _noneCursor;
         [SerializeField] CursorType_SO _combatCursor;
         [SerializeField] CursorType_SO _movementCursor;
+        [SerializeField] CursorType_SO _UICursor;
 
         Mover _mover;
         Fighter _fighter;
@@ -26,15 +29,49 @@ namespace RPG.Control
 
         void Update()
         {
-            if (_health.IsDead) return;
+            if (InteractWithUI()) return;
 
-            if (PerformCombat()) return;
-            if (PerformMovement()) return;
+            if (_health.IsDead)
+            {
+                _noneCursor.SetCursor();
+                return;
+            }
+
+            if (InteractWithComponent()) return;
+            if (InteractWithMovement()) return;
 
             _noneCursor.SetCursor();
         }
 
-        bool PerformMovement()
+        bool InteractWithUI()
+        {
+            if(EventSystem.current.IsPointerOverGameObject())
+            {
+                _UICursor.SetCursor();
+                return true;
+            }
+            return false;
+        }
+
+        bool InteractWithComponent()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            foreach (var hit in hits)
+            {
+                IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
+                foreach (var raycastable in raycastables)
+                {
+                    if (raycastable.HandleRaycast(this))
+                    {
+                        _UICursor.SetCursor();
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        bool InteractWithMovement()
         {
             RaycastHit hit;
             bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
@@ -53,27 +90,6 @@ namespace RPG.Control
 
         
         
-        bool PerformCombat()
-        {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
-
-            foreach (var hit in hits)
-            {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null) continue;
-
-                if (!_fighter.CanAttack(target.gameObject)) continue;
-
-                if (Input.GetMouseButtonDown(0))
-                    _fighter.Attack(target.gameObject);
-
-                _combatCursor.SetCursor();
-                return true;
-            }
-
-            return false;
-        }
-
         Ray GetMouseRay()
         {
             return _camera.ScreenPointToRay(Input.mousePosition);
