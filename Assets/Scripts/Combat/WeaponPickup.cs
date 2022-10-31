@@ -7,6 +7,7 @@ namespace RPG.Combat
 {
     public class WeaponPickup : MonoBehaviour, IRaycastable
     {
+        [SerializeField] CursorType_SO _cursor;
         [SerializeField] Weapon_SO _weapon;
         [SerializeField] float _respawnTime = 5f;
 
@@ -51,5 +52,9 @@ namespace RPG.Combat
             return true;
         }
 
+        public CursorType_SO GetCursorType()
+        {
+            return _cursor;
+        }
     }
 }

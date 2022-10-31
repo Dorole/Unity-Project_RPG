@@ -55,6 +55,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fireball Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 6440394792814981243, guid: 1cb6e6705b13e364cb6d3831d611bd5d, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440394792814981243, guid: 1cb6e6705b13e364cb6d3831d611bd5d, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440394792814981243, guid: 1cb6e6705b13e364cb6d3831d611bd5d, type: 3}
+      propertyPath: m_Center.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440394792814981243, guid: 1cb6e6705b13e364cb6d3831d611bd5d, type: 3}
+      propertyPath: m_Center.z
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8932257851598924849, guid: 1cb6e6705b13e364cb6d3831d611bd5d, type: 3}
       propertyPath: _weapon
       value: 

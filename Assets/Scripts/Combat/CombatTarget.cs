@@ -7,6 +7,13 @@ namespace RPG.Combat
     [RequireComponent(typeof(Health))]
     public class CombatTarget : MonoBehaviour, IRaycastable
     {
+        [SerializeField] CursorType_SO _cursor;
+
+        public CursorType_SO GetCursorType()
+        {
+            return _cursor;
+        }
+
         public bool HandleRaycast(PlayerController callingController)
         {
             if (!callingController.GetComponent<Fighter>().CanAttack(gameObject)) 
