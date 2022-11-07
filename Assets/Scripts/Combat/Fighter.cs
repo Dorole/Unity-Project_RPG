@@ -77,7 +77,7 @@ namespace RPG.Combat
 
         void AttachWeapon(Weapon_SO weapon)
         {
-           weapon.Spawn(_rightHand, _leftHand, _animator);
+           _equippedWeapon = weapon.Spawn(_rightHand, _leftHand, _animator);
         }
 
         void UnequipWeapon()
