@@ -38,7 +38,7 @@ namespace RPG.SceneManagement
             Fader fader = FindObjectOfType<Fader>();
             SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
 
-            yield return fader.FadeOut(_fadeOutTime);
+            yield return fader.CO_FadeOut(_fadeOutTime);
 
             savingWrapper.Save();
 
@@ -52,7 +52,7 @@ namespace RPG.SceneManagement
             savingWrapper.Save();
 
             yield return new WaitForSeconds(_fadeWaitTime);
-            yield return fader.FadeIn(_fadeInTime);
+            yield return fader.CO_FadeIn(_fadeInTime);
 
             Destroy(gameObject);
         }

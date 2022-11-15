@@ -9,8 +9,10 @@ namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveable
     {
+        public UnityEvent<float> OnTakeDamage;
+        public UnityEvent OnDie;
+
         [SerializeField] float _regenerationPercentage = 100;
-        [SerializeField] UnityEvent<float> _takeDamage;
 
         LazyValue<float> _healthPoints;
         public float HealthPoints => _healthPoints.value;
@@ -51,15 +53,14 @@ namespace RPG.Attributes
             print(gameObject.name + " took damage: " + damage);
 
             _healthPoints.value = Mathf.Max(_healthPoints.value - damage, 0);
-            
+
+            OnTakeDamage.Invoke(damage);
+
             if (_healthPoints.value <= 0)
             {
+                OnDie.Invoke();
                 AwardExperience();
                 Die();
-            }
-            else
-            {
-                _takeDamage.Invoke(damage);
             }
         }
 
@@ -92,7 +93,12 @@ namespace RPG.Attributes
         /// </summary>
         public float GetPercentage()
         {
-            return 100 * (_healthPoints.value / _baseStats.GetStat(Stat.Health));
+            return 100 * GetFraction();
+        }
+
+        public float GetFraction()
+        {
+            return _healthPoints.value / _baseStats.GetStat(Stat.Health);
         }
 
         public float GetMaxHealthPoints()

@@ -11,12 +11,12 @@ namespace RPG.Combat
         [SerializeField] Weapon_SO _weapon;
         [SerializeField] float _respawnTime = 5f;
 
-        void OnTriggerEnter(Collider other)
-        {
-            if (!other.CompareTag("Player")) return;
+        //void OnTriggerEnter(Collider other)
+        //{
+        //    if (!other.CompareTag("Player")) return;
 
-            Pickup(other.GetComponent<Fighter>());
-        }
+        //    Pickup(other.GetComponent<Fighter>());
+        //}
 
         private void Pickup(Fighter fighter)
         {

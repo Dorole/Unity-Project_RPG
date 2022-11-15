@@ -24,7 +24,7 @@ namespace RPG.SceneManagement
         {
             yield return _savingSystem.LoadLastScene(DEFAULT_SAVE_FILE);
             _fader.FadeOutImmediate();
-            yield return _fader.FadeIn(_fadeInTime);
+            yield return _fader.CO_FadeIn(_fadeInTime);
         }
 
         private void Update()
