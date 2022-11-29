@@ -35,6 +35,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3989257920390594477, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336990924727682442, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6059300022627147187, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6218835955751171242, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
       propertyPath: _healthPoints
       value: 200
@@ -123,6 +135,10 @@ PrefabInstance:
       propertyPath: _weaponOverride
       value: 
       objectReference: {fileID: 22100000, guid: d8a49a85648476842bf46099c0c3283d, type: 2}
+    - target: {fileID: 8485026586941485014, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
 --- !u!1 &5304250440642299468 stripped
@@ -178,6 +194,8 @@ MonoBehaviour:
   _combatCursor: {fileID: 11400000, guid: 8a79544f178307946919f1c6cec169e9, type: 2}
   _movementCursor: {fileID: 11400000, guid: 264e2e33e5684f74796a9d818fed8852, type: 2}
   _UICursor: {fileID: 11400000, guid: 19bd10b5edfa29045b0adef06acb5b2b, type: 2}
+  _maxNavMeshProjectionDistance: 1
+  _maxNavPathLength: 40
 --- !u!1001 &8034277383821801400
 PrefabInstance:
   m_ObjectHideFlags: 0

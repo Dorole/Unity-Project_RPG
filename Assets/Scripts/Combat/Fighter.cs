@@ -15,11 +15,11 @@ namespace RPG.Combat
         [SerializeField] float _timeBetweenAttacks = 0.5f;
         [SerializeField] Transform _rightHand = null;
         [SerializeField] Transform _leftHand = null;
-        [SerializeField] Weapon_SO _defaultWeapon = null;
+        [SerializeField] WeaponConfig_SO _defaultWeapon = null;
         [SerializeField] string _defaultWeaponName = "Unarmed";
 
-        LazyValue<Weapon_SO> _currentWeapon;
-        GameObject _equippedWeapon;
+        WeaponConfig_SO _currentWeaponConfig;
+        LazyValue<Weapon> _currentWeapon;
         
         Health _target;
         Mover _mover;
@@ -36,13 +36,13 @@ namespace RPG.Combat
             _animator = GetComponent<Animator>();
             _baseStats = GetComponent<BaseStats>();
 
-            _currentWeapon = new LazyValue<Weapon_SO>(SetUpDefaultWeapon);
+            _currentWeaponConfig = _defaultWeapon;
+            _currentWeapon = new LazyValue<Weapon>(SetUpDefaultWeapon);
         }
 
-        Weapon_SO SetUpDefaultWeapon()
+        Weapon SetUpDefaultWeapon()
         {
-            AttachWeapon(_defaultWeapon);
-            return _defaultWeapon;
+            return AttachWeapon(_defaultWeapon);
         }
 
         void Start()
@@ -66,23 +66,23 @@ namespace RPG.Combat
             }
         }
 
-        public void EquipWeapon(Weapon_SO weapon)
+        public void EquipWeapon(WeaponConfig_SO weapon)
         {
-            if (_equippedWeapon)
+            if (_currentWeapon.value)
                 UnequipWeapon();
 
-            _currentWeapon.value = weapon;
-            AttachWeapon(weapon);
+            _currentWeaponConfig = weapon;
+            _currentWeapon.value = AttachWeapon(weapon);
         }
 
-        void AttachWeapon(Weapon_SO weapon)
+        Weapon AttachWeapon(WeaponConfig_SO weapon)
         {
-           _equippedWeapon = weapon.Spawn(_rightHand, _leftHand, _animator);
+           return _currentWeapon.value = weapon.Spawn(_rightHand, _leftHand, _animator);
         }
 
         void UnequipWeapon()
         {
-            Destroy(_equippedWeapon.gameObject);
+            Destroy(_currentWeapon.value.gameObject);
         }
 
         void AttackBehaviour()
@@ -104,7 +104,7 @@ namespace RPG.Combat
 
         bool IsInRange()
         {
-            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.value.WeaponRange;
+            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeaponConfig.WeaponRange;
         }
 
         public bool CanAttack(GameObject target)
@@ -143,24 +143,24 @@ namespace RPG.Combat
         public IEnumerable<float> GetAdditiveModifiers(Stat stat)
         {
             if (stat == Stat.Damage)
-                yield return _currentWeapon.value.Damage;
+                yield return _currentWeaponConfig.Damage;
         }
 
         public IEnumerable<float> GetPercentageModifiers(Stat stat)
         {
             if (stat == Stat.Damage)
-                yield return _currentWeapon.value.PercentageBonus;
+                yield return _currentWeaponConfig.PercentageBonus;
         }
 
         public object CaptureState()
         {
-            return _currentWeapon.value.name;
+            return _currentWeaponConfig.name;
         }
 
         public void RestoreState(object state)
         {
             string savedWeapon = (string)state;
-            Weapon_SO weapon = Resources.Load<Weapon_SO>(savedWeapon);
+            WeaponConfig_SO weapon = Resources.Load<WeaponConfig_SO>(savedWeapon);
             EquipWeapon(weapon);
         }
 
@@ -170,8 +170,12 @@ namespace RPG.Combat
             if (_target == null) return;
 
             float damage = _baseStats.GetStat(Stat.Damage);
-            if (_currentWeapon.value.HasProjectile())
-                _currentWeapon.value.LaunchProjectile(_rightHand, _leftHand, _target, damage);
+
+            if (_currentWeapon.value != null)
+                _currentWeapon.value.OnHit();
+
+            if (_currentWeaponConfig.HasProjectile())
+                _currentWeaponConfig.LaunchProjectile(_rightHand, _leftHand, _target, damage);
             else
             {
                 _target.TakeDamage(damage);
