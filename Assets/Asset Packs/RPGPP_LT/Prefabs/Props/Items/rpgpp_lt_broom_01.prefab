@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4943165158631084}
   - component: {fileID: 33307047255004924}
   - component: {fileID: 23766729209443882}
+  - component: {fileID: 6443113765038697703}
   m_Layer: 0
   m_Name: rpgpp_lt_broom_01
   m_TagString: Untagged
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &6443113765038697703
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508616911422656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.032887727
+  m_Height: 1.3712574
+  m_Direction: 0
+  m_Center: {x: -0.7430588, y: 0.029999658, z: 0.00032971226}

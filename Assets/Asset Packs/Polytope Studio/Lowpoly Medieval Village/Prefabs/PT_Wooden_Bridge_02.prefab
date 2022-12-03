@@ -172,6 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4391368644652170603}
   - component: {fileID: 8839256744888191514}
+  - component: {fileID: 1080411234884581688}
   m_Layer: 0
   m_Name: PT_Wooden_Bridge_02
   m_TagString: Untagged
@@ -218,3 +219,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1536592952605316320}
   m_Enabled: 1
+--- !u!64 &1080411234884581688
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015687118796335057}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6918578486988042238, guid: 06585c4a497d08f4591a54ccfdb05bcf, type: 3}
