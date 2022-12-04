@@ -18,6 +18,7 @@ namespace RPG.Control
         [SerializeField] float _waypointDwellTime = 2f;
         [Range(0,1)]
         [SerializeField] float _patrolSpeedFraction = 0.2f; //fraction of maxSpeed from Mover (20%)
+        [SerializeField] float _shoutDistance = 3f;
 
         GameObject _player;
         Fighter _fighter;
@@ -130,6 +131,21 @@ namespace RPG.Control
         {
             _timeSinceLastSawPlayer = 0;
             _fighter.Attack(_player);
+
+            AggravateNearbyEnemies();
+        }
+
+        void AggravateNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, _shoutDistance, Vector3.up, 0);
+
+            foreach (var hit in hits)
+            {
+                AIController aIController = hit.collider.GetComponent<AIController>();
+                if (aIController == null || aIController == this) continue;
+
+                aIController.Aggravate();
+            }
         }
 
         void OnDrawGizmosSelected()

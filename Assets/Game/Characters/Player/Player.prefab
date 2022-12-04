@@ -224,6 +224,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8580359904849706865, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
+      propertyPath: _maxNavPathLength
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
 --- !u!1 &5304250440642299468 stripped
@@ -280,7 +284,7 @@ MonoBehaviour:
   _movementCursor: {fileID: 11400000, guid: 264e2e33e5684f74796a9d818fed8852, type: 2}
   _UICursor: {fileID: 11400000, guid: 19bd10b5edfa29045b0adef06acb5b2b, type: 2}
   _maxNavMeshProjectionDistance: 1
-  _maxNavPathLength: 40
+  _raycastRadius: 0.3
 --- !u!1001 &8034277383821801400
 PrefabInstance:
   m_ObjectHideFlags: 0

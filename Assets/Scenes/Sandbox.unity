@@ -9511,7 +9511,7 @@ Terrain:
   m_TreeBillboardDistance: 149
   m_TreeCrossFadeLength: 200
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 150
+  m_DetailObjectDistance: 250
   m_DetailObjectDensity: 0.2
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -10404,7 +10404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4056467317597095876, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2
+      value: 5.32
       objectReference: {fileID: 0}
     - target: {fileID: 4056467317597095876, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10412,7 +10412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4056467317597095876, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 49.4
+      value: 47.92
       objectReference: {fileID: 0}
     - target: {fileID: 4056467317597095876, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15077,6 +15077,10 @@ PrefabInstance:
       propertyPath: _patrolPath
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -3715629284746183312, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
+      propertyPath: _shoutDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 781546374452806496, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
       propertyPath: _healthPoints
       value: 40
@@ -17356,10 +17360,6 @@ PrefabInstance:
       propertyPath: _maxNavPathLength
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 4621265197298389295, guid: 8d1ee1d23f5fc484295aa49628a24e86, type: 3}
-      propertyPath: _maxNavPathLength
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 6048284214773243472, guid: 8d1ee1d23f5fc484295aa49628a24e86, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.07
@@ -17372,10 +17372,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 42.79
       objectReference: {fileID: 0}
-    - target: {fileID: 6658131979782003678, guid: 8d1ee1d23f5fc484295aa49628a24e86, type: 3}
-      propertyPath: _defaultWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 646804596f49acb4595211c5f3bc285e, type: 2}
     - target: {fileID: 7024552961207638772, guid: 8d1ee1d23f5fc484295aa49628a24e86, type: 3}
       propertyPath: _takeDamage.m_PersistentCalls.m_Calls.Array.size
       value: 1

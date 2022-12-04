@@ -17,6 +17,7 @@ namespace RPG.Control
         [SerializeField] CursorType_SO _UICursor;
         [Header("NavMesh Config")]
         [SerializeField] float _maxNavMeshProjectionDistance = 1f;
+        [SerializeField] float _raycastRadius = 0.2f;
 
         Mover _mover;
         Fighter _fighter;
@@ -77,7 +78,7 @@ namespace RPG.Control
 
         RaycastHit[] RaycastAllSorted()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            RaycastHit[] hits = Physics.SphereCastAll(GetMouseRay(), _raycastRadius);
             float[] distances = new float[hits.Length];
 
             //sort hits by their distance
