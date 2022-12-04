@@ -242,6 +242,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8580359904849706865, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
+      propertyPath: _maxNavPathLength
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
 --- !u!1 &5596088454739974425 stripped
@@ -298,6 +302,7 @@ MonoBehaviour:
   _waypointTolerance: 1
   _waypointDwellTime: 2
   _patrolSpeedFraction: 0.2
+  _shoutDistance: 3
 --- !u!114 &3844348205595994085
 MonoBehaviour:
   m_ObjectHideFlags: 0

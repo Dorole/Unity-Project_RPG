@@ -368,17 +368,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 416864, guid: d66c89601ce96d4419ce36a4dce3c401, type: 3}
   m_PrefabInstance: {fileID: 104852288}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &119262210 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8039368003971475289, guid: 8d1ee1d23f5fc484295aa49628a24e86, type: 3}
-  m_PrefabInstance: {fileID: 8039368003852675931}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &132194663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1555,14 +1544,14 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -7151946364860818026, guid: 70e7285800f73ab4197f873bfd346548, type: 2}
-    value: {fileID: 1410438881}
+    value: {fileID: 0}
   - key: {fileID: -2972107238308663995, guid: 70e7285800f73ab4197f873bfd346548, type: 2}
     value: {fileID: 2072380185}
   m_ExposedReferences:
     m_References:
     - ead68ee83c4759a4d9b303bb0299298a: {fileID: 1911204545}
     - 883f4fa775e7e0642bc7f08254fc354b: {fileID: 1852575426}
-    - 10d728c040d93f448829f3b5372b7838: {fileID: 119262210}
+    - 10d728c040d93f448829f3b5372b7838: {fileID: 0}
     - 320404faf44643346ad77d32e2404fd5: {fileID: 2072380186}
 --- !u!114 &625296402
 MonoBehaviour:
@@ -2844,17 +2833,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
---- !u!114 &1410438881 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8039368003115433402, guid: 8d1ee1d23f5fc484295aa49628a24e86, type: 3}
-  m_PrefabInstance: {fileID: 8039368003852675931}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1515885835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4056467317597095876, guid: 6d417fd050ca8794098363a13c8f9c15, type: 3}
@@ -4389,6 +4367,10 @@ PrefabInstance:
     - target: {fileID: 100570138981668920, guid: 571e7614ca4b9154295fd40f68415bf5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100570138981668921, guid: 571e7614ca4b9154295fd40f68415bf5, type: 3}
+      propertyPath: m_DetailObjectDistance
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 571e7614ca4b9154295fd40f68415bf5, type: 3}

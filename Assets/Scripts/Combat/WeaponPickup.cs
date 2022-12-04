@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using RPG.Control;
 using RPG.Attributes;
+using RPG.Core;
 
 namespace RPG.Combat
 {
@@ -20,7 +20,7 @@ namespace RPG.Combat
         //    Pickup(other.gameObject);
         //}
 
-        private void Pickup(GameObject collector)
+        public void Pickup(GameObject collector)
         {
             if (_weapon != null)
                 collector.GetComponent<Fighter>().EquipWeapon(_weapon);
@@ -53,7 +53,8 @@ namespace RPG.Combat
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Pickup(callingController.gameObject);
+                //Pickup(callingController.gameObject);
+                callingController.GetComponent<Collector>().Collect(this);
             }
             return true;
         }

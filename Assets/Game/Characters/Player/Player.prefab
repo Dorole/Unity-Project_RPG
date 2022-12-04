@@ -225,6 +225,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8580359904849706865, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
+      propertyPath: _maxSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580359904849706865, guid: 0331fd5e17a715143bdcd5474c6a2774, type: 3}
       propertyPath: _maxNavPathLength
       value: 30
       objectReference: {fileID: 0}
@@ -285,6 +289,19 @@ MonoBehaviour:
   _UICursor: {fileID: 11400000, guid: 19bd10b5edfa29045b0adef06acb5b2b, type: 2}
   _maxNavMeshProjectionDistance: 1
   _raycastRadius: 0.3
+--- !u!114 &6609641843046216219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304250440642299468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d8778bab089f44aa9efe57ca0f4044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxPickupDistance: 3
 --- !u!1001 &8034277383821801400
 PrefabInstance:
   m_ObjectHideFlags: 0
