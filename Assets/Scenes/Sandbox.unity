@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31299686, g: 0.2936771, b: 0.5140922, a: 1}
+  m_IndirectSpecularColor: {r: 0.31314224, g: 0.29382282, b: 0.51416165, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8417,7 +8417,7 @@ PrefabInstance:
     - target: {fileID: 5376606308531868255, guid: d905868acfcd657498ab28a349fb573f, type: 3}
       propertyPath: _portalData
       value: 
-      objectReference: {fileID: 11400000, guid: 86587ff5c0f5fba45bf55d963ae23c6a, type: 2}
+      objectReference: {fileID: 11400000, guid: 899be47e55193a04e9a3df6b9cf3724f, type: 2}
     - target: {fileID: 5376606308531868255, guid: d905868acfcd657498ab28a349fb573f, type: 3}
       propertyPath: _fadeOutTime
       value: 0.5
@@ -16416,7 +16416,7 @@ PrefabInstance:
     - target: {fileID: 5376606308531868255, guid: d905868acfcd657498ab28a349fb573f, type: 3}
       propertyPath: _portalData
       value: 
-      objectReference: {fileID: 11400000, guid: 47298aa1b32cfc4409ad5146fa6f6ee7, type: 2}
+      objectReference: {fileID: 11400000, guid: 9a5b3ae63e2bd2a4181eebf174059661, type: 2}
     - target: {fileID: 5376606308531868255, guid: d905868acfcd657498ab28a349fb573f, type: 3}
       propertyPath: _fadeOutTime
       value: 0.5
