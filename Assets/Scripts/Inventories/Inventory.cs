@@ -1,11 +1,10 @@
+using RPG.Saving;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Inventories
 {
-    public class Inventory : MonoBehaviour
+    public class Inventory : MonoBehaviour, ISaveable
     {
         //serialized for debug purposes
         [SerializeField] SO_InventoryItem[] _items;
@@ -108,5 +107,27 @@ namespace RPG.Inventories
             return -1;
         }
 
+        object ISaveable.CaptureState()
+        {
+            string[] slotStrings = new string[_inventorySize];
+
+            for (int i = 0; i < _inventorySize; i++)
+            {
+                if (_slots[i] != null)
+                    slotStrings[i] = _slots[i].ItemID;
+            }
+
+            return slotStrings;
+        }
+
+        void ISaveable.RestoreState(object state)
+        {
+            var slotStrings = (string[])state;
+
+            for (int i = 0; i < _inventorySize; i++)
+                _slots[i] = SO_InventoryItem.GetItemFromID(slotStrings[i]);
+
+            OnInventoryUpdated?.Invoke();
+        }
     }
 }
