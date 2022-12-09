@@ -302,3 +302,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxPickupDistance: 3
+--- !u!114 &4771041289507748219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304250440642299468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44de4078b114474f9476a7edc8b5cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventorySize: 16

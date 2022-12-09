@@ -1,14 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using RPG.Inventories;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RPG
 {
+    [RequireComponent(typeof(Image))]
     public class InventoryItemIcon : MonoBehaviour
     {
-        internal void SetItem(Sprite item)
+        public void SetItem(SO_InventoryItem item)
         {
             var iconImage = GetComponent<Image>();
 
@@ -17,11 +16,11 @@ namespace RPG
             else
             {
                 iconImage.enabled = true;
-                iconImage.sprite = item;
+                iconImage.sprite = item.Icon;
             }    
         }
 
-        internal Sprite GetItem()
+        public Sprite GetItem()
         {
             var iconImage = GetComponent<Image>();
 

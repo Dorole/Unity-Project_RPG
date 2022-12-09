@@ -21200,7 +21200,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1806396405}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99998546
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -33588,6 +33588,7 @@ GameObject:
   - component: {fileID: 1837160692}
   - component: {fileID: 1837160694}
   - component: {fileID: 1837160693}
+  - component: {fileID: 1837160695}
   m_Layer: 0
   m_Name: Inventory Items
   m_TagString: Untagged
@@ -33619,7 +33620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00030517578, y: -619.99976}
+  m_AnchoredPosition: {x: 0.00030517578, y: -619.99994}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1837160693
@@ -33660,6 +33661,19 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1837160695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837160691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b188188938e5443855974763c3fdd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventorySlotPrefab: {fileID: 1464630890960659617, guid: 98e0aee45c569234197cab58515cb98b, type: 3}
 --- !u!4 &1837454018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 422086, guid: e8686cbc341df69428f0f0c1569bba94, type: 3}
@@ -39338,6 +39352,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Core
       objectReference: {fileID: 0}
+    - target: {fileID: 1160714500306931963, guid: fa2f7c245e84d264db348839d3f97459, type: 3}
+      propertyPath: _items.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160714500306931963, guid: fa2f7c245e84d264db348839d3f97459, type: 3}
+      propertyPath: _items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1eac63f53abdd974596abfd75b461b1e, type: 2}
+    - target: {fileID: 1160714500306931963, guid: fa2f7c245e84d264db348839d3f97459, type: 3}
+      propertyPath: _items.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 65e392829fcf104429c67ecb05f21ca2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa2f7c245e84d264db348839d3f97459, type: 3}
 --- !u!1001 &7298755661570854258

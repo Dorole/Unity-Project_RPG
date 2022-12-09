@@ -1,22 +1,31 @@
 using RPG.Core.UI.Dragging;
-using System.Collections;
-using System.Collections.Generic;
+using RPG.Inventories;
 using UnityEngine;
 
 namespace RPG.UI.Inventories
 {
-    public class InventorySlotUI : MonoBehaviour, IDragContainer<Sprite>
+    public class InventorySlotUI : MonoBehaviour, IDragContainer<SO_InventoryItem>
     {
         [SerializeField] InventoryItemIcon _icon = null;
 
-        public void AddItems(Sprite item, int number)
+        int _index;
+        Inventory _inventory;
+
+        public void Setup(Inventory inventory, int index)
         {
-            _icon.SetItem(item);
+            _inventory = inventory;
+            _index = index;
+            _icon.SetItem(_inventory.GetItemInSlot(_index));
         }
 
-        public Sprite GetItem()
+        public void AddItems(SO_InventoryItem item, int number)
         {
-            return _icon.GetItem();
+            _inventory.AddToSlot(_index, item);
+        }
+
+        public SO_InventoryItem GetItem()
+        {
+            return _inventory.GetItemInSlot(_index);
         }
 
         public int GetNumber()
@@ -24,9 +33,9 @@ namespace RPG.UI.Inventories
             return 1;
         }
 
-        public int MaxAcceptable(Sprite item)
+        public int MaxAcceptable(SO_InventoryItem item)
         {
-            if (GetItem() == null)
+            if (_inventory.HasSpaceFor(item))
                 return int.MaxValue;
 
             return 0;
@@ -34,7 +43,7 @@ namespace RPG.UI.Inventories
 
         public void RemoveItems(int number)
         {
-            _icon.SetItem(null);
+            _inventory.RemoveFromSlot(_index);
         }
 
     }
