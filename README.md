@@ -41,6 +41,7 @@ A practice project in RPG style.
 * How to implement cutscenes
 * How to implement a progression system for levelling up
 * How to understand and work with YAML files
+* How to organize an inventory system with several working panels (inventory, equipment, action bar)
 ***
 ### TO DO:
-Implement inventory systems, quests, dialogues, shops and abilities to create a short RPG prototype.
+Implement inventory systems (ongoing), quests, dialogues, shops and abilities to create a short RPG prototype.
