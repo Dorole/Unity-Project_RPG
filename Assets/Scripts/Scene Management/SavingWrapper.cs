@@ -15,7 +15,7 @@ namespace RPG.SceneManagement
         SavingSystem _savingSystem;
         Fader _fader;
 
-        private void Awake()
+        void Awake()
         {
             _savingSystem = GetComponent<SavingSystem>();
             _fader = FindObjectOfType<Fader>();
@@ -30,7 +30,7 @@ namespace RPG.SceneManagement
             yield return _fader.CO_FadeIn(_fadeInTime);
         }
 
-        private void Update()
+        void Update()
         {
             if (Input.GetKeyDown(_saveKey))
                 Save();

@@ -1,4 +1,5 @@
 using RPG.Combat;
+using RPG.Inventories;
 using RPG.Movement;
 using UnityEngine;
 
@@ -7,8 +8,8 @@ namespace RPG.Core
     public class Collector : MonoBehaviour, IAction
     {
         [SerializeField] float _maxPickupDistance = 3.0f;
-
-        WeaponPickup _pickup; //should make general pickup once other items are introduced
+ 
+        Pickup _pickup;
         Mover _mover;
         ActionScheduler _actionScheduler;
 
@@ -29,13 +30,13 @@ namespace RPG.Core
             else
             {
                 _mover.Cancel();
-                _pickup.Pickup(gameObject);
+                _pickup.PickupItem();
                 _pickup = null;
             }
 
         }
 
-        public void Collect(WeaponPickup pickup)
+        public void Collect(Pickup pickup)
         {
             _actionScheduler.StartAction(this);
             _pickup = pickup;

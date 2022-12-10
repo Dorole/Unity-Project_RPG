@@ -12,8 +12,8 @@ namespace RPG.Inventories
         [SerializeField] string _displayName = null;
         [SerializeField] [TextArea] string _description = null;
         [SerializeField] Sprite _icon = null;
+        [SerializeField] Pickup _pickup = null;
         [SerializeField] bool _stackable = false;
-        //TO DO: add pickup game object
 
         static Dictionary<string, SO_InventoryItem> _itemLookupCache;
 
@@ -22,6 +22,14 @@ namespace RPG.Inventories
         public string Description => _description;
         public Sprite Icon => _icon;
         public bool IsStackable => _stackable;
+
+        public Pickup SpawnPickup(Vector3 position)
+        {
+            var pickup = Instantiate(_pickup);
+            pickup.transform.position = position;
+            pickup.Setup(this);
+            return pickup;
+        }
 
         #region SAVING
 
@@ -65,6 +73,5 @@ namespace RPG.Inventories
 
         #endregion
 
-        //method for spawning pickups
     }
 }

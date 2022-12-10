@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using RPG.Control;
 using RPG.Attributes;
-using RPG.Core;
 
 namespace RPG.Combat
 {
@@ -53,8 +52,7 @@ namespace RPG.Combat
         {
             if (Input.GetMouseButtonDown(0))
             {
-                //Pickup(callingController.gameObject);
-                callingController.GetComponent<Collector>().Collect(this);
+                Pickup(callingController.gameObject);
             }
             return true;
         }
