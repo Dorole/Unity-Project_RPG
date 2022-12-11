@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.UI.Inventories
 {
-    public class InventorySlotUI : MonoBehaviour, IDragContainer<SO_InventoryItem>
+    public class InventorySlotUI : MonoBehaviour, IDragContainer<SO_InventoryItem>, IItemHolder
     {
         [SerializeField] InventoryItemIcon _icon = null;
 
