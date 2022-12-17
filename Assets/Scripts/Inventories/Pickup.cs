@@ -8,26 +8,32 @@ namespace RPG.Inventories
     public class Pickup : MonoBehaviour
     {
         SO_InventoryItem _item;
+        int _amount;
         Inventory _inventory;
 
         public SO_InventoryItem Item => _item;
+        public int Amount => _amount;
 
         void Awake()
         {
             _inventory = Inventory.GetPlayerInventory();
         }
 
-        public void Setup(SO_InventoryItem item)
+        public void Setup(SO_InventoryItem item, int number)
         {
             _item = item;
+            if (!_item.IsStackable) number = 1;
+            _amount = number;
         }
 
         public void PickupItem()
         {
-            bool foundSlot = _inventory.AddToFirstEmptySlot(_item);
+            bool foundSlot = _inventory.AddToFirstEmptySlot(_item, _amount);
 
             if (foundSlot)
+            {
                 Destroy(gameObject);
+            }
         }
 
         public bool CanBePickedUp()

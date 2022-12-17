@@ -1,13 +1,18 @@
 using RPG.Inventories;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace RPG
 {
     [RequireComponent(typeof(Image))]
     public class InventoryItemIcon : MonoBehaviour
     {
-        public void SetItem(SO_InventoryItem item)
+        [SerializeField] GameObject _textContainer = null;
+        [SerializeField] TextMeshProUGUI _itemAmount = null;
+
+
+        public void SetItem(SO_InventoryItem item, int number)
         {
             var iconImage = GetComponent<Image>();
 
@@ -18,6 +23,17 @@ namespace RPG
                 iconImage.enabled = true;
                 iconImage.sprite = item.Icon;
             }    
+
+            if (_itemAmount)
+            {
+                if (number <= 1)
+                    _textContainer.SetActive(false);
+                else
+                {
+                    _textContainer.SetActive(true);
+                    _itemAmount.text = number.ToString();
+                }
+            }
         }
 
         public Sprite GetItem()

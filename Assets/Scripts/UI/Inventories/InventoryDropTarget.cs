@@ -10,10 +10,10 @@ namespace RPG.UI.Inventories
     /// </summary>
     public class InventoryDropTarget : MonoBehaviour, IDragDestination<SO_InventoryItem>
     {
-        public void AddItems(SO_InventoryItem item, int number)
+        public void AddItems(SO_InventoryItem item, int amount)
         {
             var player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<ItemDropper>().Dropitem(item);
+            player.GetComponent<ItemDropper>().Dropitem(item, amount);
         }
 
         public int MaxAcceptable(SO_InventoryItem item)

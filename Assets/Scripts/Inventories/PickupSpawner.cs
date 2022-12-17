@@ -6,6 +6,7 @@ namespace RPG.Inventories
     public class PickupSpawner : MonoBehaviour, ISaveable
     {
         [SerializeField] SO_InventoryItem _item = null;
+        [SerializeField] int _amount = 1;
 
         void Awake()
         {
@@ -14,7 +15,7 @@ namespace RPG.Inventories
 
         void SpawnPickup()
         {
-            var spawnedPickup = _item.SpawnPickup(transform.position);
+            var spawnedPickup = _item.SpawnPickup(transform.position, _amount);
             spawnedPickup.transform.SetParent(transform);
         }
 

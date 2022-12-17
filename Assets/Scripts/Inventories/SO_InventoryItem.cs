@@ -23,11 +23,11 @@ namespace RPG.Inventories
         public Sprite Icon => _icon;
         public bool IsStackable => _stackable;
 
-        public Pickup SpawnPickup(Vector3 position)
+        public Pickup SpawnPickup(Vector3 position, int number)
         {
             var pickup = Instantiate(_pickup);
             pickup.transform.position = position;
-            pickup.Setup(this);
+            pickup.Setup(this, number);
             return pickup;
         }
 

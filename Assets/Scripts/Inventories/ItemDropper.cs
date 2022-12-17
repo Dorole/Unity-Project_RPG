@@ -10,9 +10,9 @@ namespace RPG.Inventories
     {
         List<Pickup> _droppedItems = new List<Pickup>();
 
-        public void Dropitem(SO_InventoryItem item)
+        public void Dropitem(SO_InventoryItem item, int amount)
         {
-            SpawnPickup(item, GetDropLocation());
+            SpawnPickup(item, GetDropLocation(), amount);
         }
 
         /// <summary>
@@ -23,9 +23,9 @@ namespace RPG.Inventories
             return new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
         }
 
-        void SpawnPickup(SO_InventoryItem item, Vector3 spawnLocation)
+        void SpawnPickup(SO_InventoryItem item, Vector3 spawnLocation, int amount)
         {
-            var pickup = item.SpawnPickup(spawnLocation);
+            var pickup = item.SpawnPickup(spawnLocation, amount);
             _droppedItems.Add(pickup);
         }
 
@@ -36,6 +36,7 @@ namespace RPG.Inventories
         {
             public string ItemID;
             public SerializableVector3 DropLocation;
+            public int Amount;
         }
 
         object ISaveable.CaptureState()
@@ -47,6 +48,7 @@ namespace RPG.Inventories
             {
                 dropRecords[i].ItemID = _droppedItems[i].Item.ItemID;
                 dropRecords[i].DropLocation = new SerializableVector3(_droppedItems[i].transform.position);
+                dropRecords[i].Amount = _droppedItems[i].Amount;
             }
 
             return dropRecords;
@@ -54,12 +56,16 @@ namespace RPG.Inventories
 
         void ISaveable.RestoreState(object state)
         {
+            ClearDroppedItemsList();
+
             var dropRecords = (DropRecord[])state;
             foreach (var item in dropRecords)
             {
                 var pickupItem = SO_InventoryItem.GetItemFromID(item.ItemID);
                 Vector3 position = item.DropLocation.ToVector();
-                SpawnPickup(pickupItem, position);
+                int amount = item.Amount;
+
+                SpawnPickup(pickupItem, position, amount);
             }
         }
 
@@ -77,6 +83,17 @@ namespace RPG.Inventories
             }
 
             _droppedItems = uppdatedDroppedItems;
+        }
+
+        void ClearDroppedItemsList()
+        {
+            if (_droppedItems.Count != 0)
+            {
+                foreach (var item in _droppedItems)
+                    Destroy(item.gameObject);
+
+                _droppedItems.Clear();
+            }
         }
 
         #endregion

@@ -15,12 +15,12 @@ namespace RPG.UI.Inventories
         {
             _inventory = inventory;
             _index = index;
-            _icon.SetItem(_inventory.GetItemInSlot(_index));
+            _icon.SetItem(_inventory.GetItemInSlot(_index), _inventory.GetItemAmountInSlot(_index));
         }
 
         public void AddItems(SO_InventoryItem item, int number)
         {
-            _inventory.AddToSlot(_index, item);
+            _inventory.AddToSlot(_index, item, number);
         }
 
         public SO_InventoryItem GetItem()
@@ -30,7 +30,7 @@ namespace RPG.UI.Inventories
 
         public int GetNumber()
         {
-            return 1;
+            return _inventory.GetItemAmountInSlot(_index);
         }
 
         public int MaxAcceptable(SO_InventoryItem item)
@@ -43,7 +43,7 @@ namespace RPG.UI.Inventories
 
         public void RemoveItems(int number)
         {
-            _inventory.RemoveFromSlot(_index);
+            _inventory.RemoveFromSlot(_index, number);
         }
 
     }
