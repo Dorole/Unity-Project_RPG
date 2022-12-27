@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c142f28c1d0c3cb4b80996d5814cbb21, type: 3}
   m_Name: Hat
   m_EditorClassIdentifier: 
+  _itemID: a186ceb8-6c77-42cd-8bae-5d28e3aebb04
   _displayName: Hat
   _description: Keeps your head warm.
   _icon: {fileID: 21300000, guid: c1b61b3a91732a747a8496fc75a13fe2, type: 3}
+  _pickup: {fileID: 0}
   _stackable: 0

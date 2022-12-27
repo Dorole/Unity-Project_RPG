@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace RPG.Inventories
 {
-    [CreateAssetMenu(menuName = ("UI/Inventory Item"))]
-    public class SO_InventoryItem : ScriptableObject, ISerializationCallbackReceiver
+    [CreateAssetMenu(menuName = ("Inventory/Inventory Item"))]
+    public class SO_InventoryItem : ScriptableObject, ISerializationCallbackReceiver 
     {
         [Tooltip("Auto-generated UUID for saving/loading.")]
         [SerializeField] string _itemID = null;

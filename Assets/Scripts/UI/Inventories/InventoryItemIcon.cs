@@ -11,6 +11,10 @@ namespace RPG
         [SerializeField] GameObject _textContainer = null;
         [SerializeField] TextMeshProUGUI _itemAmount = null;
 
+        public void SetItem(SO_InventoryItem item)
+        {
+            SetItem(item, 0);
+        }
 
         public void SetItem(SO_InventoryItem item, int number)
         {

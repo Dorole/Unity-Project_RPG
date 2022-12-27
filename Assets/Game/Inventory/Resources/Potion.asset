@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c142f28c1d0c3cb4b80996d5814cbb21, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  _itemID: 6d243c8c-3ef0-4fea-852b-ceb9d035b170
+  _itemID: ad19ec98-cc3f-492e-b290-b2f21c056cd6
   _displayName: Red Potion
   _description: Drink to feel better!
   _icon: {fileID: 21300000, guid: aba0f700d91d4fc4fa8c724899ab04ab, type: 3}

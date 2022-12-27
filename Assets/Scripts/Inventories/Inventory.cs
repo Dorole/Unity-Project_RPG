@@ -136,8 +136,8 @@ namespace RPG.Inventories
         }
 
         int FindStack(SO_InventoryItem item)
-        {
-            if (!item.IsStackable) return -1;
+        { 
+            if ( item == null || !item.IsStackable) return -1;
 
             for (int i = 0; i < _slots.Length; i++)
             {
