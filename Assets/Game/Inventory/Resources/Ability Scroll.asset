@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b557f7c977daa49a76e365f0deacf5, type: 3}
+  m_Name: Ability Scroll
+  m_EditorClassIdentifier: 
+  _itemID: ec404ebd-7240-4ac1-872e-315d27206adb
+  _displayName: Ability Scroll
+  _description: Read this to get magical abilities. If you know how to read, that
+    is.
+  _icon: {fileID: 21300000, guid: a1ec2c0ddc0da634b85f0f465fec2d0d, type: 3}
+  _pickup: {fileID: 5601368039904393773, guid: 265aeda6c48234344a2c09cfd4c92067, type: 3}
+  _stackable: 1
+  _consumable: 0
