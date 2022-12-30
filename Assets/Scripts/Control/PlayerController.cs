@@ -20,14 +20,13 @@ namespace RPG.Control
         [SerializeField] float _raycastRadius = 0.2f;
 
         Mover _mover;
-        Fighter _fighter;
         Health _health;
         Camera _camera;
+        bool _isDraggingFromUI = false;
 
         void Awake()
         {
             _mover = GetComponent<Mover>();
-            _fighter = GetComponent<Fighter>();
             _health = GetComponent<Health>();
             _camera = Camera.main;
         }
@@ -50,11 +49,20 @@ namespace RPG.Control
 
         bool InteractWithUI()
         {
-            if(EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButtonUp(0))
+                _isDraggingFromUI = false;
+
+            if (EventSystem.current.IsPointerOverGameObject())
             {
+                if (Input.GetMouseButtonDown(0))
+                    _isDraggingFromUI = true;
+
                 _UICursor.SetCursor();
                 return true;
             }
+
+            if (_isDraggingFromUI) return true;
+
             return false;
         }
 
@@ -110,8 +118,6 @@ namespace RPG.Control
 
             return false;
         }
-
-        
         
         bool RaycastNavMesh(out Vector3 target)
         {

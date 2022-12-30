@@ -4,19 +4,18 @@ using RPG.Core;
 using RPG.Saving;
 using RPG.Attributes;
 using RPG.Stats;
-using System.Collections.Generic;
 using RPG.Utils;
+using RPG.Inventories;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         
         [SerializeField] float _timeBetweenAttacks = 0.5f;
         [SerializeField] Transform _rightHand = null;
         [SerializeField] Transform _leftHand = null;
         [SerializeField] WeaponConfig_SO _defaultWeapon = null;
-        [SerializeField] string _defaultWeaponName = "Unarmed";
 
         WeaponConfig_SO _currentWeaponConfig;
         LazyValue<Weapon> _currentWeapon;
@@ -26,6 +25,7 @@ namespace RPG.Combat
         ActionScheduler _scheduler;
         Animator _animator;
         BaseStats _baseStats;
+        Equipment _equipment;
 
         float _timeSinceLastAttack = Mathf.Infinity;
 
@@ -35,6 +35,10 @@ namespace RPG.Combat
             _scheduler = GetComponent<ActionScheduler>();
             _animator = GetComponent<Animator>();
             _baseStats = GetComponent<BaseStats>();
+            _equipment = GetComponent<Equipment>();
+
+            if (_equipment) 
+                _equipment.OnEquipmentUpdated += UpdateWeapon;
 
             _currentWeaponConfig = _defaultWeapon;
             _currentWeapon = new LazyValue<Weapon>(SetUpDefaultWeapon);
@@ -73,6 +77,15 @@ namespace RPG.Combat
 
             _currentWeaponConfig = weapon;
             _currentWeapon.value = AttachWeapon(weapon);
+        }
+
+        void UpdateWeapon()
+        {
+            var weapon = _equipment.GetItemInSlot(EquipLocation.Weapon) as WeaponConfig_SO;
+            if (weapon == null)
+                EquipWeapon(_defaultWeapon);
+            else
+                EquipWeapon(weapon);
         }
 
         Weapon AttachWeapon(WeaponConfig_SO weapon)
@@ -143,18 +156,6 @@ namespace RPG.Combat
         public Health GetTarget()
         {
             return _target;
-        }
-
-        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
-        {
-            if (stat == Stat.Damage)
-                yield return _currentWeaponConfig.Damage;
-        }
-
-        public IEnumerable<float> GetPercentageModifiers(Stat stat)
-        {
-            if (stat == Stat.Damage)
-                yield return _currentWeaponConfig.PercentageBonus;
         }
 
         public object CaptureState()

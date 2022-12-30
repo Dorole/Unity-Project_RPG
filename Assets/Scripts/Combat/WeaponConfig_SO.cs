@@ -1,10 +1,13 @@
-using RPG.Attributes; 
+using RPG.Attributes;
+using RPG.Inventories;
+using RPG.Stats;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Make New Weapon", order = 0)]
-    public class WeaponConfig_SO : ScriptableObject
+    public class WeaponConfig_SO : SO_EquippableItem, IModifierProvider
     {
         [SerializeField] AnimatorOverrideController _animatorOverride = null;
         [SerializeField] Weapon _equippedPrefab = null;
@@ -49,6 +52,19 @@ namespace RPG.Combat
         private Transform GetHandTransform(Transform rightHand, Transform leftHand)
         {
             return _isRightHanded ? rightHand : leftHand;
+        }
+
+        //simplified implementation for the sake of not having to redo assets - should be able to add other bonuses, too
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat) 
+        {
+            if (stat == Stat.Damage)
+                yield return _damage;
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+                yield return _percentageBonus;
         }
     }
 }

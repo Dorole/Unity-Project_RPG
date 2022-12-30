@@ -7,19 +7,24 @@ namespace RPG.Inventories
 {
     /// <summary>
     /// Stores items equipped to a player. Items are stored by
-    /// their equip locations. Place on the player character.
+    /// their equip locations. Place implementation class on the player character.
     /// </summary>
-    public class Equipment : MonoBehaviour, ISaveable
+    public abstract class Equipment : MonoBehaviour, ISaveable 
     {
         public event Action OnEquipmentUpdated;
 
         Dictionary<EquipLocation, SO_EquippableItem> _equippedItems = new Dictionary<EquipLocation, SO_EquippableItem>();
 
-        internal SO_InventoryItem GetItemInSlot(EquipLocation equipLocation)
+        public SO_InventoryItem GetItemInSlot(EquipLocation equipLocation)
         {
             if (!_equippedItems.ContainsKey(equipLocation)) return null;
 
             return _equippedItems[equipLocation];
+        }
+
+        public IEnumerable<EquipLocation> GetAllPopulatedSlots()
+        {
+            return _equippedItems.Keys;
         }
 
         internal void AddItem(EquipLocation equipLocation, SO_EquippableItem item)

@@ -36,7 +36,7 @@ namespace RPG.SceneManagement
                 Save();
 
             if (Input.GetKeyDown(_loadKey))
-                Load();
+                StartCoroutine(LoadLastScene());
 
             if (Input.GetKeyDown(_deleteKey))
                 Delete();
