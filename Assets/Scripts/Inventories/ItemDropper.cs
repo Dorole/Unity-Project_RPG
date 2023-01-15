@@ -3,12 +3,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RPG.Inventories
 {
     public class ItemDropper : MonoBehaviour, ISaveable
     {
         List<Pickup> _droppedItems = new List<Pickup>();
+        List<DropRecord> _itemsDroppedInOtherScenes = new List<DropRecord>();
 
         public void Dropitem(SO_InventoryItem item, int amount)
         {
@@ -37,30 +39,46 @@ namespace RPG.Inventories
             public string ItemID;
             public SerializableVector3 DropLocation;
             public int Amount;
+            public int sceneBuildIndex;
         }
 
         object ISaveable.CaptureState()
         {
             RemoveDestroyedDrops();
-            
-            var dropRecords = new DropRecord[_droppedItems.Count];
-            for (int i = 0; i < dropRecords.Length; i++)
+
+            var droppedItemsList = new List<DropRecord>();
+            int buildIndex = SceneManager.GetActiveScene().buildIndex;
+
+            foreach(Pickup pickup in _droppedItems)
             {
-                dropRecords[i].ItemID = _droppedItems[i].Item.ItemID;
-                dropRecords[i].DropLocation = new SerializableVector3(_droppedItems[i].transform.position);
-                dropRecords[i].Amount = _droppedItems[i].Amount;
+                var droppedItem = new DropRecord();
+                droppedItem.ItemID = pickup.Item.ItemID;
+                droppedItem.DropLocation = new SerializableVector3(pickup.transform.position);
+                droppedItem.Amount = pickup.Amount;
+                droppedItem.sceneBuildIndex = buildIndex;
+                droppedItemsList.Add(droppedItem);
             }
 
-            return dropRecords;
+            droppedItemsList.AddRange(_itemsDroppedInOtherScenes);
+            return droppedItemsList;
         }
 
         void ISaveable.RestoreState(object state)
         {
             ClearDroppedItemsList();
+            _itemsDroppedInOtherScenes.Clear();
 
-            var dropRecords = (DropRecord[])state;
+            var dropRecords = (List<DropRecord>)state;
+            int buildIndex = SceneManager.GetActiveScene().buildIndex;
+
             foreach (var item in dropRecords)
             {
+                if (item.sceneBuildIndex != buildIndex)
+                {
+                    _itemsDroppedInOtherScenes.Add(item);
+                    continue;
+                }
+
                 var pickupItem = SO_InventoryItem.GetItemFromID(item.ItemID);
                 Vector3 position = item.DropLocation.ToVector();
                 int amount = item.Amount;

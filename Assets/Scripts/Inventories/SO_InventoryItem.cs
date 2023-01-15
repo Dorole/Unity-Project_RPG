@@ -47,6 +47,12 @@ namespace RPG.Inventories
 
                 foreach (var item in itemList)
                 {
+                    if (item.ItemID == null)
+                    {
+                        Debug.LogError($"{item.name} does not have a valied itemID!");
+                        continue;
+                    }
+
                     if (_itemLookupCache.ContainsKey(item._itemID))
                     {
                         Debug.LogError(string.Format("There's a duplicate ID for objects: {0} and {1}.", _itemLookupCache[item._itemID], item));

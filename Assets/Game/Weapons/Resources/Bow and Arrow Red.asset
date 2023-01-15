@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a606abecf43cc4dbbf2b25be30d655, type: 3}
   m_Name: Bow and Arrow Red
   m_EditorClassIdentifier: 
+  _itemID: b413a574-8a0c-4d4c-bd47-73fd5bf69bd9
+  _displayName: 
+  _description: 
+  _icon: {fileID: 0}
+  _pickup: {fileID: 0}
+  _stackable: 0
+  _allowedEquipLocation: 3
   _animatorOverride: {fileID: 22100000, guid: b4d8cca39f918ba48845177ea7db41b7, type: 2}
   _equippedPrefab: {fileID: 4350997747612702459, guid: 57511afc3ed3f824996de335e13b8020, type: 3}
   _damage: 0
