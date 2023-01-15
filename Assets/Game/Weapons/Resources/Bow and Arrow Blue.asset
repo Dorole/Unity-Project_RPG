@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a606abecf43cc4dbbf2b25be30d655, type: 3}
   m_Name: Bow and Arrow Blue
   m_EditorClassIdentifier: 
+  _itemID: 31fb33e7-6d2f-45e7-85de-cef61c2fac52
+  _displayName: 
+  _description: 
+  _icon: {fileID: 21300000, guid: ec22508be0cdfba4abbaeb770bef08aa, type: 3}
+  _pickup: {fileID: 5065710369575788101, guid: a2ab04f9d92da1d44bad96ad5b0111c7, type: 3}
+  _stackable: 0
+  _allowedEquipLocation: 3
   _animatorOverride: {fileID: 22100000, guid: b4d8cca39f918ba48845177ea7db41b7, type: 2}
   _equippedPrefab: {fileID: 4350997747612702459, guid: 57511afc3ed3f824996de335e13b8020, type: 3}
   _damage: 0

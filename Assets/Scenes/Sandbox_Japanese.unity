@@ -7748,6 +7748,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Samurai (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7863821223576379384, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8338153068160753405, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
       propertyPath: uniqueIdentifier
       value: 1e6612b9-0397-4e1d-8890-fd8fd72d82a9
@@ -9739,6 +9743,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Samurai (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7863821223576379384, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8338153068160753405, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
       propertyPath: uniqueIdentifier
       value: 91d4533f-c354-452d-a8b3-16b0e9bc4b3e
@@ -10994,6 +11002,10 @@ PrefabInstance:
     - target: {fileID: 7863821223576379384, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
       propertyPath: m_Name
       value: Enemy_Samurai (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863821223576379384, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8338153068160753405, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
       propertyPath: uniqueIdentifier
@@ -13764,6 +13776,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Samurai_Warrior (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5876480697684356106, guid: 60d7d56b4da946044a73cf0809924cf6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60d7d56b4da946044a73cf0809924cf6, type: 3}
 --- !u!1001 &693529393
@@ -13894,6 +13910,10 @@ PrefabInstance:
     - target: {fileID: 7863821223576379384, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
       propertyPath: m_Name
       value: Enemy_Samurai (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863821223576379384, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8338153068160753405, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
       propertyPath: uniqueIdentifier
@@ -21456,6 +21476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Samurai (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7863821223576379384, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8338153068160753405, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
       propertyPath: uniqueIdentifier
       value: e60cfc50-0936-48df-868a-3a1a1100b9b9
@@ -25437,6 +25461,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Samurai (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7863821223576379384, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8338153068160753405, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
       propertyPath: uniqueIdentifier
       value: 11defb61-f53e-47d0-9d5c-3ae0ad657784
@@ -26183,6 +26211,10 @@ PrefabInstance:
     - target: {fileID: 2137450487661413928, guid: aeb10eb3b523bab4d901dedf3acc1b6d, type: 3}
       propertyPath: m_Name
       value: Enemy_Samurai_Archer (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137450487661413928, guid: aeb10eb3b523bab4d901dedf3acc1b6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7515246228244846837, guid: aeb10eb3b523bab4d901dedf3acc1b6d, type: 3}
       propertyPath: m_RootOrder
@@ -29251,6 +29283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Samurai (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7863821223576379384, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8338153068160753405, guid: d85dcbc4aace44c478eba97d83829a88, type: 3}
       propertyPath: uniqueIdentifier
       value: 619a06c2-59fc-4911-a133-7b2ad70c6456
@@ -30635,6 +30671,10 @@ PrefabInstance:
     - target: {fileID: 2137450487661413928, guid: aeb10eb3b523bab4d901dedf3acc1b6d, type: 3}
       propertyPath: m_Name
       value: Enemy_Samurai_Archer (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137450487661413928, guid: aeb10eb3b523bab4d901dedf3acc1b6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7515246228244846837, guid: aeb10eb3b523bab4d901dedf3acc1b6d, type: 3}
       propertyPath: m_RootOrder
@@ -36003,7 +36043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00030517578, y: -620}
+  m_AnchoredPosition: {x: 0.00030517578, y: -619.9999}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1837160693

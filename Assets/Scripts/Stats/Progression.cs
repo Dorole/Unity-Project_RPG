@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RPG.Stats
 {
-    [CreateAssetMenu(fileName = "Progression", menuName = "Stats/New Progression", order = 0)]
+    [CreateAssetMenu(fileName = "New Progression", menuName = "Stats/Progression", order = 0)]
     public class Progression : ScriptableObject
     {
         // consider separate progression SOs for each character class, instead of having it all in 1
