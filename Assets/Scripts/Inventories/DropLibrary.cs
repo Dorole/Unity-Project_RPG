@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RPG.Inventories
 {
     [CreateAssetMenu(fileName = "Drop Library", menuName = "Inventory/Drop Library", order = 0)]
-    public class DropLibrary : ScriptableObject
+    public class DropLibrary : ScriptableObject //rename Loot Library
     {
         [SerializeField] DropConfig[] _potentialDrops;
         [SerializeField] float[] _dropChance; //percentage
@@ -39,14 +39,16 @@ namespace RPG.Inventories
 
         public IEnumerable<Dropped> GetRandomDrops(int level)
         {
-            if (!ShouldRandomDrop(level))
-                yield break;
+            //if (!ShouldRandomDrop(level))
+            //    yield break;
 
             List<DropConfig> potentialDropInstance = _potentialDrops.ToList();
 
             int numberOfDrops = GetRandomNumberOfDrops(level);
             for (int i = 0; i < numberOfDrops; i++)
                 yield return GetRandomDrop(level, potentialDropInstance);
+
+            Debug.Log($"Dropped {numberOfDrops} items");
         }
 
         bool ShouldRandomDrop(int level)

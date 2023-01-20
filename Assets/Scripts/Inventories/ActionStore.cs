@@ -11,7 +11,7 @@ namespace RPG.Inventories
 
         Dictionary<int, DockedItemSlot> _dockedItems = new Dictionary<int, DockedItemSlot>();
 
-        private class DockedItemSlot
+        class DockedItemSlot
         {
             public SO_ActionItem Item;
             public int Number;

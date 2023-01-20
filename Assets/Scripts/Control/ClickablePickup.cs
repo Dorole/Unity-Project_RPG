@@ -32,6 +32,5 @@ namespace RPG.Control
             }
             return true;
         }
-
     }
 }

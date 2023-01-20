@@ -5,7 +5,7 @@ namespace RPG.Inventories
     /// <summary>
     /// Place at the root of a Pickup prefab. Contains data about the pickup.
     /// </summary>
-    public class Pickup : MonoBehaviour
+    public class Pickup : MonoBehaviour, ICollectable
     {
         SO_InventoryItem _item;
         int _amount;
@@ -26,7 +26,12 @@ namespace RPG.Inventories
             _amount = number;
         }
 
-        public void PickupItem()
+        public bool CanBePickedUp()
+        {
+            return _inventory.HasSpaceFor(_item);
+        }
+
+        public void HandleCollection()
         {
             bool foundSlot = _inventory.AddToFirstEmptySlot(_item, _amount);
 
@@ -35,11 +40,9 @@ namespace RPG.Inventories
                 Destroy(gameObject);
             }
         }
-
-        public bool CanBePickedUp()
+        public Transform GetTransform()
         {
-            return _inventory.HasSpaceFor(_item);
+            return gameObject.transform;
         }
-
     }
 }

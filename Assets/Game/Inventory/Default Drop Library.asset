@@ -45,5 +45,5 @@ MonoBehaviour:
     MaxItems: 01000000
   _dropChance:
   - 100
-  _minDrops: 01000000
-  _maxDrops: 0200000004000000
+  _minDrops: 02000000
+  _maxDrops: 04000000
