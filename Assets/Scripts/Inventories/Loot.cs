@@ -14,8 +14,10 @@ namespace RPG.Inventories
     /// </summary>
     public class Loot : MonoBehaviour, IRaycastable, ICollectable
     {
+        //switch to internal where possible!
+
         public static event Action<Loot> OnLootClicked;
-        public event Action OnLootUpdated;
+        public static event Action<Loot> OnLootUpdated;
 
         [SerializeField] DropLibrary _lootLibrary;
         public DropLibrary LootLibrary => _lootLibrary;
@@ -33,7 +35,7 @@ namespace RPG.Inventories
             public int Amount;
         }
 
-        private void Start()
+        void Start()
         {
             _inventory = Inventory.GetPlayerInventory();
             _lootConfig = LootConfig.GetLootConfig();
@@ -41,7 +43,7 @@ namespace RPG.Inventories
             _lootSlots = new LootSlot[_lootConfig.LootSize];
         }
 
-        public void FillLoot()
+        void FillLoot()
         {
             if (!TryGetComponent(out BaseStats baseStats))
                 baseStats = GameObject.FindGameObjectWithTag("Player").GetComponent<BaseStats>();
@@ -60,29 +62,30 @@ namespace RPG.Inventories
             }
 
             _filled = true;
-            //OnLootUpdated?.Invoke();
         }
 
-        public void RemoveLootFromSlot(int slot)
+        internal void RemoveLootFromSlot(int slot)
         {
             _lootSlots[slot].Item = null;
             _lootSlots[slot].Amount = 0;
 
-            //OnLootUpdated?.Invoke();
+            OnLootUpdated?.Invoke(this);
         }
 
-        public SO_InventoryItem GetItemInSlot(int slot)
+        internal SO_InventoryItem GetItemInSlot(int slot)
         {
             return _lootSlots[slot].Item;
         }
 
-        public int GetItemAmountInSlot(int slot)
+        internal int GetItemAmountInSlot(int slot)
         {
             return _lootSlots[slot].Amount;
         }
 
-        public void TransferToInventory(int slot)
+        internal void TransferToInventory(int slot)
         {
+            if (_lootSlots[slot].Item == null) return;
+
             if (!_inventory.HasSpaceFor(_lootSlots[slot].Item))
             {
                 Debug.Log("Inventory full!");
@@ -91,7 +94,7 @@ namespace RPG.Inventories
 
             _inventory.AddToFirstEmptySlot(_lootSlots[slot].Item, _lootSlots[slot].Amount);
 
-            //OnLootUpdated?.Invoke();
+            RemoveLootFromSlot(slot);
         }
 
         public CursorType_SO GetCursorType()
@@ -135,6 +138,18 @@ namespace RPG.Inventories
         public Transform GetTransform()
         {
             return gameObject.transform;
+        }
+
+        internal void AddToLoot(SO_InventoryItem item, int number, int index)
+        {
+            _lootSlots[index].Item = item;
+
+            if (item.IsStackable)
+                _lootSlots[index].Amount += number;
+            else
+                _lootSlots[index].Amount = number;
+
+            OnLootUpdated?.Invoke(this);
         }
     }
 }

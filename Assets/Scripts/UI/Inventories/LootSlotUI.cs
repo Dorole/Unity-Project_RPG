@@ -7,22 +7,20 @@ using UnityEngine.EventSystems;
 
 namespace RPG.UI.Inventories
 {
-    public class LootSlotUI : MonoBehaviour, IItemHolder, IPointerClickHandler, IDragSource<SO_InventoryItem> 
+    public class LootSlotUI : MonoBehaviour, IItemHolder, IPointerClickHandler, IDragContainer<SO_InventoryItem> 
     {
-        //should be source? - do I want to enable dragging?
-
-        Inventory _playerInventory;
         Loot _loot;
         int _index;
         [SerializeField] InventoryItemIcon _icon = null;
 
-        //Setup method - will be called by LootUI (see InventorySlotUI - InventoryUI)
-        //LootUI redraws when Loot object is opened
-
-        private void Start()
+        private void OnEnable()
         {
-            _playerInventory = Inventory.GetPlayerInventory();
-            //subscribe to LootUpdated - update slot(s)
+            Loot.OnLootUpdated += RedrawUI;
+        }
+
+        private void OnDisable()
+        {
+            Loot.OnLootUpdated -= RedrawUI;
         }
 
         public void Setup(Loot loot, int index)
@@ -32,21 +30,22 @@ namespace RPG.UI.Inventories
             _icon.SetItem(_loot.GetItemInSlot(_index), _loot.GetItemAmountInSlot(_index));
         }
 
-        void UpdateIcon()
-        {
-
-        }
-
         public SO_InventoryItem GetItem()
         {
             return _loot.GetItemInSlot(_index);
         }
 
+        void RedrawUI(Loot loot)
+        {
+            if (_loot != loot)
+                _loot = loot;
+            
+            _icon.SetItem(_loot.GetItemInSlot(_index), _loot.GetItemAmountInSlot(_index));
+        }
+
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
         {
-            //get item on this index from the Loot
-            //_playerInventory.AddToFirstEmptySlot(_item, _amount);
-            throw new System.NotImplementedException();
+            _loot.TransferToInventory(_index);
         }
 
         public int GetNumber()
@@ -56,8 +55,34 @@ namespace RPG.UI.Inventories
 
         public void RemoveItems(int number)
         {
-            //_loot.RemoveFromSlot(_index, number)
-            throw new System.NotImplementedException();
+            _loot.RemoveLootFromSlot(_index);
+        }
+
+        public int MaxAcceptable(SO_InventoryItem item)
+        {
+            if (_loot.GetItemInSlot(_index) == null) 
+                return int.MaxValue;
+
+            if (ReferenceEquals(item, _loot.GetItemInSlot(_index)))
+            {
+                if (item.IsStackable)
+                    return int.MaxValue;
+                else
+                    return 0;
+            }
+
+            else
+            {
+                if (item.IsStackable)
+                    return int.MaxValue;
+                else
+                    return 1;
+            }
+        }
+
+        public void AddItems(SO_InventoryItem item, int number)
+        {
+            _loot.AddToLoot(item, number, _index);
         }
     }
 }
