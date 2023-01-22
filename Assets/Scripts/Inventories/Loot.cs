@@ -4,18 +4,15 @@ using RPG.Stats;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Events;
+using RPG.Saving;
 
 namespace RPG.Inventories
 {
     /// <summary>
     /// Place on the object/character that can be looted.
     /// </summary>
-    public class Loot : MonoBehaviour, IRaycastable, ICollectable
+    public class Loot : MonoBehaviour, IRaycastable, ICollectable, ISaveable
     {
-        //switch to internal where possible!
-
         public static event Action<Loot> OnLootClicked;
         public static event Action<Loot> OnLootUpdated;
 
@@ -35,14 +32,26 @@ namespace RPG.Inventories
             public int Amount;
         }
 
+        private void OnEnable()
+        {
+            
+        }
+
         void Start()
         {
             _inventory = Inventory.GetPlayerInventory();
-            _lootConfig = LootConfig.GetLootConfig();
 
-            _lootSlots = new LootSlot[_lootConfig.LootSize];
+            if (_lootConfig == null) //use LazyValue?
+            {
+                _lootConfig = LootConfig.GetLootConfig();
+                _lootSlots = new LootSlot[_lootConfig.LootSize];
+            }
+
         }
 
+        /// <summary>
+        /// Loot is only filled when the player clicks on it for the first time.
+        /// </summary>
         void FillLoot()
         {
             if (!TryGetComponent(out BaseStats baseStats))
@@ -99,6 +108,9 @@ namespace RPG.Inventories
 
         public CursorType_SO GetCursorType()
         {
+            if (!enabled)
+                return null;
+
             if (HasLoot() || !_filled)
                 return _lootConfig.FullCursor;
             else
@@ -107,12 +119,15 @@ namespace RPG.Inventories
 
         public bool HandleRaycast(PlayerController callingController)
         {
+            if (!enabled)
+                return false;
+
             if (Input.GetMouseButtonDown(0))
             {
                 callingController.GetComponent<Collector>().Collect(this);
 
                 if (!_filled)
-                    FillLoot(); //call this from somewhere else??
+                    FillLoot(); 
             }
 
             return true;
@@ -151,5 +166,58 @@ namespace RPG.Inventories
 
             OnLootUpdated?.Invoke(this);
         }
+
+        #region SAVING
+
+        [System.Serializable]
+        struct LootSlotRecord
+        {
+            public string ItemID;
+            public int Amount;
+        }
+
+        object ISaveable.CaptureState()
+        {
+            if (!enabled || !_filled) 
+            return false;
+
+            int lootSize = _lootConfig.LootSize;
+            var slotRecords = new LootSlotRecord[lootSize];
+
+            for (int i = 0; i < lootSize; i++)
+            {
+                if (_lootSlots[i].Item != null)
+                {
+                    slotRecords[i].ItemID = _lootSlots[i].Item.ItemID;
+                    slotRecords[i].Amount = _lootSlots[i].Amount;
+                }
+            }
+
+            return slotRecords;
+        }
+
+        void ISaveable.RestoreState(object state)
+        {
+            if (state is bool && !(bool)state) return;
+
+            var slotRecords = (LootSlotRecord[])state;
+
+            if (_lootConfig == null) 
+            {
+                _lootConfig = LootConfig.GetLootConfig();
+                _lootSlots = new LootSlot[_lootConfig.LootSize];
+            }
+
+            for (int i = 0; i < _lootConfig.LootSize; i++)
+            {
+                _lootSlots[i].Item = SO_InventoryItem.GetItemFromID(slotRecords[i].ItemID);
+                _lootSlots[i].Amount = slotRecords[i].Amount;
+            }
+
+            _filled = true;
+            OnLootUpdated?.Invoke(this);
+        }
+
+        #endregion
     }
 }
