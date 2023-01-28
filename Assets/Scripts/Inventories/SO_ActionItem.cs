@@ -10,9 +10,12 @@ namespace RPG.Inventories
         [SerializeField] bool _consumable = false;
         public bool IsConsumable => _consumable;
 
+        [Tooltip("Describe effect prior to implementing")]
+        [SerializeField] [TextArea] string _placeholderMessage = null;
+
         public virtual void Use(GameObject target)
         {
-            Debug.Log("Use action: " + this);
+            Debug.Log($"{this} : {_placeholderMessage}");
         }
     }
 }

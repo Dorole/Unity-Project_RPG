@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a606abecf43cc4dbbf2b25be30d655, type: 3}
+  m_Name: Shuriken Juji
+  m_EditorClassIdentifier: 
+  _itemID: 892ca6cd-0b98-4e57-9c18-8e81d4390055
+  _displayName: Juji Shuriken
+  _description: A four-sided steel star. Effective for distance attacks.
+  _icon: {fileID: 21300000, guid: 7650d1aa4ab1ad74c88c456012e4158d, type: 3}
+  _pickup: {fileID: 4077678965853812373, guid: 01d20ac4d65fa5245b5f48c54ccc331c, type: 3}
+  _stackable: 1
+  _allowedEquipLocation: 3
+  _animatorOverride: {fileID: 22100000, guid: 6e696b6cffe3a304fbd989287364ade7, type: 2}
+  _equippedPrefab: {fileID: 0}
+  _damage: 5
+  _percentageBonus: 2
+  _weaponRange: 20
+  _isRightHanded: 0
+  _projectile: {fileID: 6130244637086512068, guid: 98a0aaee6e5e23c42b83d73bd438525e, type: 3}

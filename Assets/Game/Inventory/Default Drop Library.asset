@@ -19,7 +19,7 @@ MonoBehaviour:
     - 40
     MinItems: 01000000
     MaxItems: 02000000
-  - Item: {fileID: 11400000, guid: 6e29cdc1900b91746b679a5595d3e3cc, type: 2}
+  - Item: {fileID: 11400000, guid: edaa9713169e11d42bc018b88a420321, type: 2}
     RelativeChance:
     - 10
     - 50
@@ -31,13 +31,73 @@ MonoBehaviour:
     - 30
     MinItems: 01000000
     MaxItems: 01000000
-  - Item: {fileID: 11400000, guid: 96ea3a1cf47db1d408cccadcefd41b12, type: 2}
+  - Item: {fileID: 11400000, guid: 70a4495915292d546810cea422ac8c55, type: 2}
     RelativeChance:
     - 60
     - 30
     MinItems: 01000000
     MaxItems: 01000000
   - Item: {fileID: 11400000, guid: 86e0ec34483e85a4c9049309c6c6842b, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: bab465b613efba74f824d1dac2290956, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: 55c3ac4fe10c7ee4d89baef50cd801cb, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: eed6287ba354f744aafe0a5809c3549d, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: 3c6e9efe9209a7d4da15f902bb361f47, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: cb2428ea58a02274f8f1f99983b490c4, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: 165788d51f2943a42830b7893fbd6863, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: c74a1523af5c8e54a892242304324ea0, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: a755955259618794d84f79965658cc3a, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: 023550f1456f7514fb6b516e4a0f0e1e, type: 2}
+    RelativeChance:
+    - 0
+    - 50
+    MinItems: 01000000
+    MaxItems: 01000000
+  - Item: {fileID: 11400000, guid: 08146f78907385a4484dfc5f84181b79, type: 2}
     RelativeChance:
     - 0
     - 50

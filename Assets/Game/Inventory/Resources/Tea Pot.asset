@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b557f7c977daa49a76e365f0deacf5, type: 3}
+  m_Name: Tea Pot
+  m_EditorClassIdentifier: 
+  _itemID: ee5f0a4c-006c-4aa0-bba3-984232130d16
+  _displayName: Tea Pot
+  _description: "Take a tea break. \n[Combine with shamisen to enter zen mode.]"
+  _icon: {fileID: 21300000, guid: e4da8bc032b06f1449ff6bc423e82416, type: 3}
+  _pickup: {fileID: 1029481060683622979, guid: ffa9a03a09a4d824d9e48d7e0dd90474, type: 3}
+  _stackable: 0
+  _consumable: 1
+  _placeholderMessage: Restores mana. If combined with shamisen, player enters zen
+    mode.

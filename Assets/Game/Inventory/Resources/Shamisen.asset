@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b557f7c977daa49a76e365f0deacf5, type: 3}
+  m_Name: Shamisen
+  m_EditorClassIdentifier: 
+  _itemID: 4db3aa6b-636e-4338-8090-e34ca8935984
+  _displayName: Shamisen
+  _description: Plays healing meditative music.
+  _icon: {fileID: 21300000, guid: 822566fb34ed7ba45ba78b319cd8d818, type: 3}
+  _pickup: {fileID: 3012334307221663769, guid: 253ac9dbd0484314581839aee770d130, type: 3}
+  _stackable: 0
+  _consumable: 0
+  _placeholderMessage: Restores health. Plays zen sounds.

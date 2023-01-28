@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Mana Potion
   m_EditorClassIdentifier: 
   _itemID: c6cbb2b6-2b03-472c-836f-d11f9e62a0ab
-  _displayName: Mana Potion
-  _description: Drink to top up mana.
+  _displayName: Health Potion
+  _description: Drink to top up health.
   _icon: {fileID: 21300000, guid: f1dd815974b2d4240a6bc912d6585497, type: 3}
   _pickup: {fileID: 1029481060683622979, guid: ffa9a03a09a4d824d9e48d7e0dd90474, type: 3}
   _stackable: 1
   _consumable: 1
+  _placeholderMessage: Tops up health.

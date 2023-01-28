@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a606abecf43cc4dbbf2b25be30d655, type: 3}
+  m_Name: Kunai Twosided
+  m_EditorClassIdentifier: 
+  _itemID: 2547f383-0af4-4671-ba21-272318a89a22
+  _displayName: Two-sided Kunai
+  _description: A short double-blade, effective in close combat.
+  _icon: {fileID: 21300000, guid: 7d4ee53e416dc3e43aeb2fc8b1100278, type: 3}
+  _pickup: {fileID: 6712126610334734335, guid: 6ea127e627042474d829b34b8122ebdf, type: 3}
+  _stackable: 0
+  _allowedEquipLocation: 3
+  _animatorOverride: {fileID: 22100000, guid: d8a49a85648476842bf46099c0c3283d, type: 2}
+  _equippedPrefab: {fileID: 0}
+  _damage: 30
+  _percentageBonus: 10
+  _weaponRange: 1
+  _isRightHanded: 1
+  _projectile: {fileID: 0}

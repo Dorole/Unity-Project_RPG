@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a606abecf43cc4dbbf2b25be30d655, type: 3}
+  m_Name: Tonfa
+  m_EditorClassIdentifier: 
+  _itemID: f8725fb0-e690-42c2-a8de-f8974de1d30f
+  _displayName: Tonfa
+  _description: Good enough if you've got nothing else to fight with.
+  _icon: {fileID: 21300000, guid: 706133d863929914cafcb9756560bf9f, type: 3}
+  _pickup: {fileID: 1017409431895338037, guid: b97d61d4189dfc0478be75a359e1416f, type: 3}
+  _stackable: 0
+  _allowedEquipLocation: 3
+  _animatorOverride: {fileID: 22100000, guid: d8a49a85648476842bf46099c0c3283d, type: 2}
+  _equippedPrefab: {fileID: 8635182777554006795, guid: c35458dc713ed8a4b96d6b963a399e01, type: 3}
+  _damage: 5
+  _percentageBonus: 0
+  _weaponRange: 2
+  _isRightHanded: 1
+  _projectile: {fileID: 0}

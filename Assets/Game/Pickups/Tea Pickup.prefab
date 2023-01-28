@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 441224, guid: 12431def28cf5fd40b265a60794b0337, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 441224, guid: 12431def28cf5fd40b265a60794b0337, type: 3}
       propertyPath: m_LocalPosition.z
@@ -141,4 +141,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.25
-  m_Center: {x: -0.03, y: 0.18, z: 0}
+  m_Center: {x: -0.03, y: -1.21, z: 0}

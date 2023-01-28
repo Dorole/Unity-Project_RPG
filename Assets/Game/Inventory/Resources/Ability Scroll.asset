@@ -20,3 +20,4 @@ MonoBehaviour:
   _pickup: {fileID: 5601368039904393773, guid: 265aeda6c48234344a2c09cfd4c92067, type: 3}
   _stackable: 1
   _consumable: 0
+  _placeholderMessage: Player learns a new ability.

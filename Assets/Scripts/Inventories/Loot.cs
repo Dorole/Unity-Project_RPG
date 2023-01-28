@@ -16,9 +16,7 @@ namespace RPG.Inventories
         public static event Action<Loot> OnLootClicked;
         public static event Action<Loot> OnLootUpdated;
 
-        [SerializeField] DropLibrary _lootLibrary;
-        public DropLibrary LootLibrary => _lootLibrary;
-
+        [SerializeField] DropLibrary _lootLibrary = null;
         [SerializeField] LootSlot[] _lootSlots;
 
         Inventory _inventory;
@@ -30,11 +28,6 @@ namespace RPG.Inventories
         {
             public SO_InventoryItem Item;
             public int Amount;
-        }
-
-        private void OnEnable()
-        {
-            
         }
 
         void Start()

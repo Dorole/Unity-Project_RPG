@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a606abecf43cc4dbbf2b25be30d655, type: 3}
   m_Name: Katana
   m_EditorClassIdentifier: 
-  _animatorOverride: {fileID: 22100000, guid: d8a49a85648476842bf46099c0c3283d, type: 2}
+  _itemID: 5b004486-114f-41ff-872e-bd8e82395216
+  _displayName: Katana
+  _description: A samurai's precious blade.
+  _icon: {fileID: 21300000, guid: c6483dab8588eb74db7dba00f1990f35, type: 3}
+  _pickup: {fileID: 1398780311477557231, guid: 37bea2ac33562614c83a97a1e9143e68, type: 3}
+  _stackable: 0
+  _allowedEquipLocation: 3
+  _animatorOverride: {fileID: 22100000, guid: 3ba95b31e262b96429e6bf9e686e4f1e, type: 2}
   _equippedPrefab: {fileID: 8635182777554006795, guid: 9c6412b1723b9b6478156046b640a369, type: 3}
   _damage: 8
-  _percentageBonus: 40
+  _percentageBonus: 50
   _weaponRange: 2
   _isRightHanded: 1
   _projectile: {fileID: 0}
