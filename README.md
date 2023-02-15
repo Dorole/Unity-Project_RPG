@@ -10,7 +10,6 @@ I started this project in June 2022. It was supposed to be a practice 3D project
 * [Phase I](#phase-i)
 * [Phase II](#phase-ii)
 * [Phase III - TO DO](#phase-iii)
-* [Story, Mechanics, Visuals](#story-mechanics-visuals)
 ***
 ### Phase I
 I first used free low-poly medieval-ish assets where the character came with animations, so it was easy to get it set up. In this first phase I implemented the following:
@@ -52,41 +51,25 @@ In this phase the following was implemented:
 * **Equipment**: This is another class on the Player object. It’s simpler than the Inventory since it can only accept certain types of items (Equippable Item) and the Equipment Slots can only accept one of each item. The slot types are stored in an enum which is used as a key in the dictionary the Equipment uses to store what is currently equipped. Equipment UI also listens to the changes in the Equipment to redraw its visuals. The Fighter class listens to the changes in the Equipment to spawn the equipped weapon in the player’s hand. After the weapon is spawned, the Fighter class takes over. 
 * **Action bar**: Another inventory on the Player. It has a set number of Action Slots which accept one or several Action Items. When an item in an Action Slot is clicked on, it’s either used or consumed. Currently using an Action Item has no effect, it just prints out a log message. 
 * **Tooltip**: When the mouse is over an item slotted into a slot that implements the IItemHolder interface (currently, all types of slots – inventory, equipment, action and loot – do), the tooltip is enabled. It currently displays only the item name and description.
+
+![Snimka zaslona 2023-02-01 213709](https://user-images.githubusercontent.com/35565194/219019427-8a78d36c-1969-4c24-a0dc-984db618b78b.png)
+*The items can be transferred between three inventory panels. The equipped weapon spawns in the player's hand(s). Hovering over the items in any of the slots enables the tooltip with the item's name and description.*
+
 * **Chests and looting**: At first all pick-ups were individual objects spawned into the world via PickupSpawner class. When an enemy died, it generated a random number of random drops via a DropLibrary scriptable object which held all droppable items, calculated the chance of it being dropped and finally dropped some items based on the chance of anything being dropped, the item’s chance of being dropped and the player’s progression level. I didn’t like this system because it cluttered the scene with objects and spawned new objects every time an enemy died. It was also difficult to see where something was dropped, if anything was in the first place. <br> 
 I rewrote the system completely so that the pick-ups are now stored in loot containers and the player can click on the container or a dead enemy, which opens a small UI screen with Loot Slots containing items. By clicking on an item, it is transferred into the inventory. The randomization is calculated using the same DropLibrary as earlier. As every Loot class takes in a DropLibrary, different libraries can be created, for example ones with special items, more powerful items which could be dropped by more powerful enemies, custom libraries etc. This system is cleaner and more practical. I kept the old pick-up system too, in case the player drops an item from the inventory and then wants to pick it back up. I introduced a new interface, ICollectable, which is implemented by Loot and Pickups, so the Collector class can handle them both in the same manner. <br> 
+
+![Snimka zaslona 2023-02-01 213052](https://user-images.githubusercontent.com/35565194/219018765-7b0cc0f9-85f5-417f-853d-68f194e38943.png)
+*The loot panel opens when the player clicks on a loot container.*
+
+![Snimka zaslona 2023-02-01 214039](https://user-images.githubusercontent.com/35565194/219019138-6630586e-4f1d-4748-868b-e64a3d3c6925.png)
+*The loot panel opens when the player clicks on a dead enemy.*
 <br> 
+
 One thing I want to add here is the option to **split stacks**, but it is currently on backlog, until all core systems are set up (dialogue, quests, abilities, shops) + not everything that can be slotted into the Equipment or the Action Bar has any (visible) effect yet. For now the weapons are more or less the only thing which is working as it should (gets equipped, the correct animation plays, the damage is done, the projectiles/shurikens fired off). <br> 
 I also want to add the possibility to **equip more than one weapon**, specifically for shurikens – I want the player to be able to slot a certain number of them and use them until he spends them. I’m still thinking whether I should adapt the equipment system to do this, or change shurikens to ActionItems instead of EquippableItems. This is also on backlog since it’s not crucial at this stage.
 
 ***
-### Story, Mechanics, Visuals
-*DISCLAIMER: The current setup contains nothing of this. Since this started as a practice RPG project and I’ve come up with the idea for the story only recently, the current setup is what you would normally find in any RPG game. The final product will absolutely utilize these mechanics.*<br>
-<br>
-Currently I have only bits and pieces, so I won’t describe it in great detail. The story will take place in the world where **multiverse travel** is possible. The MC is a woman detective with the authority to travel between parallel universes to solve crimes. At the start of the story she receives an order to visit an iteration of her hometown, Zagreb. Upon arriving, several things become apparent: another universe has expanded onto the one she found herself in and now they are overlapping, causing a knot in the time-space continuum and creating an unstable amalgamation which will soon lead to either an implosion or, which is far, far less likely, to a complete, stable merge.<br> 
-<br>
-As the two universes continue to collide, a protrusion into the transcendental dimension has opened which causes fantastical beings to pour out on both sides. Most of them dislike the sudden disturbance and are hostile.<br> 
-<br>
-Next, the apparatus which enables to travel back to her universe has been broken or someone broke it.<br> 
-<br>
-Finally, people are being murdered in both overlapping universes and the tenants are blaming each-other.<br> 
-<br>
-These represent **core missions** for the player: solve murders and fix the apparatus before the universe-collision is complete. This means that the player will be under a time-pressure. If the missions aren’t solved before the time runs out, one of two things will happen to mark the end of the game: either the universes will merge (1% chance) or they will implode (99% chance). If the player succeeds, (s)he will be able to travel to the Multiverse Exploration Agency and bring back people who know how to stabilize the universes, start the separation process and close the gap into the transcendental dimension.<br>
-<br>
-**Core mechanics**: 
-* **Interrogate tenants of both universes and collect evidence into the evidence log**. There will also be a suspect-log, where the player will be able to sort the people (s)he talks to according to whether (s)he finds them suspicious or not. I am thinking about making this automatic, based on the evidence logged. At the end, when it is time to reveal the culprit(s), if the evidence is insufficient, the accused won’t be apprehended, even if the accused is/are true culprits. The evidence will be collected mostly by talking to the NPCs and finding items. After the conversation, the player will be able to mark the lines told by the NPC that sound incriminating into the evidence-log. The number of entries that can be logged will be limited so the player has to choose the lines carefully. Items that are collected can also be marked as evidence, subject to the same limitations as lines.
-* **Travel between the two collided universes**. Currently I’m imagining it as both universes always being present, but one is always either transparent or black-and-white. There will be an item which will enable the player to switch the active universe. When the universe is inactive, the player can’t interact with NPCs or items. Since the Zagreb universe is the base one, the player will be able to switch to the other one by using the items (s)he must collect. Every time the item is used, it is spent. The time the player can spend in the other universe will be limited and it will grow as the player’s level grows.  
-* **collecting the plates with hiragana characters**. Since the collision caused a knot in a time-space continuum, the place and time that collided with the modern-day Zagreb is Kyoto in the feudal era. This is just a preference of mine, since I already have a lot of Japanese assets and I don’t want to part with them + I don’t want to disappoint the Japanophile in me. <br>
-Once the characters that make up a word are collected, the corresponding word(s) will appear in a dictionary. The dictionary will contain the word in hiragana, the translation and the kanji. The player will often have to consult the dictionary to unlock new areas, solve quests etc., but most importantly - without collecting the hiragana characters, the player won’t be able to understand what the tenants of the collided universe are saying.
-* **fight hostile beings and send them back to their dimension**. In order to do this, the player will have to collect weapons and improve their skills and abilities. Occasionally the player will have to fight people too and knock the unconscious if the situation calls. <br>
-<br>
-**Visuals**:
-<br> 
-I quite like the low-poly visuals I used in the sandbox, so I’d like to keep that look. <br>
-The story will start in a noir-looking Zagreb. The player will then travel to the iteration of Zagreb which will consist of **three main maps**, I think: Upper Town, Lower Town and Tunnels. I’ll try to make it look recognizable at least, even if the actual locations probably won’t be reproduced 100% faithfully. <br>
-As far as the Japanese universe is concerned, I will be satisfied with making it look like a believable Kyoto village of that era. I think the current sandbox shown here already does a nice job. 
-
-***
 ### Phase III
 *TO DO*: <br>
-* Gameplay: First I will implement the general mechanics: dialogue, quests/missions, abilities and shops before moving on to the mechanics specific to this game (unless I get impatient and move to the specifics earlier).
+* Gameplay: First I will implement the general mechanics: dialogue, quests/missions, abilities and shops before moving on to the mechanics specific to this game.
 * Backlog: Split stacks; expand tooltip; drop menu on right click on the item in one of the inventories; implement the rate at which the items wear off or get spent until they have to be discarded or taken to a repair shop.
