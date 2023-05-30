@@ -20,7 +20,7 @@ MonoBehaviour:
   _stackable: 0
   _allowedEquipLocation: 3
   _animatorOverride: {fileID: 22100000, guid: d8a49a85648476842bf46099c0c3283d, type: 2}
-  _equippedPrefab: {fileID: 0}
+  _equippedPrefab: {fileID: 8635182777554006795, guid: 8cac8c7706016ba4985b41da28431c56, type: 3}
   _damage: 30
   _percentageBonus: 10
   _weaponRange: 1

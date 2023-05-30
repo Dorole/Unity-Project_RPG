@@ -127,6 +127,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Samurai_Regular
       objectReference: {fileID: 0}
+    - target: {fileID: 6802775720749729195, guid: 9ea739e9f9190c8489d27cd7d15e8a72, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea739e9f9190c8489d27cd7d15e8a72, type: 3}
 --- !u!4 &1784512840587608357 stripped
